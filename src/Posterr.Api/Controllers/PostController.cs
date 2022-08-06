@@ -1,12 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Posterr.Application.Post.Commands.CreatePost;
-using Posterr.Application.Post.Commands.CreateQuote;
-using Posterr.Application.Posteets.Commands.CreateReposteet;
 using Posterr.Domain.Interfaces.Services;
-using Posterr.Domain.ViewModel.Post;
 using Posterr.Shared.Kernel.Handler;
 using Posterr.Shared.Kernel.Notifications;
+using Posterr.Application.Posteets.Queries.GetPosteetsByUser;
+using Posterr.Application.Posteets.Queries.GetPosteetsList;
 
 namespace Posterr.Api.Controllers
 {
@@ -30,22 +28,22 @@ namespace Posterr.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetLatestPosts(
+        public async Task<IActionResult> GetPosts(
             [FromQuery] int skip = 0,
             [FromQuery] int take = 10)
         {
-            var command = new GetPostsListQuery { Skip = skip, Take = take };
+            var command = new GetPostListQuery { Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(command));
         }
 
-        [HttpGet("/users/{userName}")]
+        [HttpGet("/users/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetPostsByUserId(
             [FromRoute] Guid userId,
             [FromQuery] int skip = 0,
             [FromQuery] int take = 5)
         {
-            var command = new GetPostsByUserQuery { UserName = userId, Skip = skip, Take = take };
+            var command = new GetPostByUserQuery { UserName = userId, Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(command));
         }
 

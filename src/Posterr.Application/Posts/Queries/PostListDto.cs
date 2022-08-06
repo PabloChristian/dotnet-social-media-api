@@ -2,9 +2,9 @@
 
 namespace Posterr.Application.Posteets.Queries
 {
-    public class PostListDto
+    public class PostListViewModel
     {
-        public IList<PostDto> Posteets { get; set; }
+        public IList<PostDto> PostMessages { get; set; }
 
         public int Count { get; set; }
     }

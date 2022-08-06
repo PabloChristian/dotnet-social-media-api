@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Posterr.Domain.Commands;
+using Posterr.Application.Users.Queries;
 using Posterr.Domain.Entity;
-using Posterr.Shared.Kernel.Entity;
 
 namespace Posterr.Application.AutoMapper.Mappers
 {
@@ -9,7 +8,6 @@ namespace Posterr.Application.AutoMapper.Mappers
     {
         public UserMapper()
         {
-            CreateMap<UserAddCommand, User>();
             CreateMap<User, UserDto>();
         }
     }

@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Posterr.Application.Common.Interfaces;
 using Posterr.Domain.Entity;
 using Posterr.Domain.Exceptions;
+using Posterr.Domain.Interface;
+using Posterr.Domain.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
@@ -10,38 +12,38 @@ using System.Threading.Tasks;
 
 namespace Posterr.Application.Post.Commands.CreatePost
 {
-    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, int>
+    public class CreatePostCommandHandler : IRequestHandler<CreatePostCommand, Guid>
     {
-        private readonly IPosterrDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPostRepository _postRepository;
+        private const int POSTS_PER_DAY = 5;
 
-        public CreatePostCommandHandler(IPosterrDbContext context)
+        public CreatePostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
+            _postRepository = postRepository;
         }
 
-        public async Task<int> Handle(CreatePostCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreatePostCommand request, CancellationToken cancellationToken)
         {
-            var today = DateTime.Today;
-            var tomorrow = today.AddDays(1);
+            var currentDateValue = DateTime.Today;
 
-            var posteetsInOneDay = _context.Posteets
-                .Where(p => p.UserName == request.UserName && p.Created >= today && p.Created < tomorrow)
-                .AsNoTracking().Count();
-
-            if (posteetsInOneDay == 5)
-                throw new AdPosteetInvalidException(posteetsInOneDay);
-
-            var entity = new Posteet
+            var entity = new Domain.Entity.Post
             {
-                Post = request.Post,
-                UserName = request.UserName
+                UserName = request.UserName,
+                RepostId = request.Id,
             };
 
-            _context.Posteets.Add(entity);
+            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity, currentDateValue, currentDateValue.AddDays(1));
 
-            await _context.SaveChangesAsync(cancellationToken);
+            if (totalPosts >= POSTS_PER_DAY)
+                throw new LimitPostsExceededException($"It is not allowed to post more than \"{POSTS_PER_DAY}\" posts in one day. Total posted: ${totalPosts}");
 
-            return entity.PosteetId;
+            _postRepository.Add(entity);
+
+            await _unitOfWork.CommitAsync(cancellationToken);
+
+            return entity.Id;
         }
     }
 }

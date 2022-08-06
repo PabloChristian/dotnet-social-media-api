@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Posterr.Shared.Kernel.Entity
+namespace Posterr.Shared.Kernel.Results
 {
     public class ApiBadReturn
     {

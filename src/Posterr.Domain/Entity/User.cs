@@ -1,11 +1,18 @@
 ﻿using Posterr.Shared.Kernel.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Posterr.Domain.Entity
 {
     public class User : EntityBase
     {
-        public string Name { get; set; } = string.Empty;
-        public string UserName { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        [Key]
+        [MaxLength(14)]
+        public string UserName { get; set; }
+        public string UserScreeName { get; set; }
+        public string ProfileImageUrl { get; set; }
+        public DateTime Joined { get; set; }
+        public ICollection<Post> PostMessage { get; private set; }
+
+        public User() => PostMessage = new HashSet<Post>();
     }
 }

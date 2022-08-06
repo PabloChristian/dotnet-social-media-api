@@ -7,7 +7,7 @@ namespace Posterr.Application.Posts.Commands.CreateRepost
     public class CreateRepostCommand<TResult> : GenericCommandResult<TResult>
     {
         public string UserName { get; set; }
-        public int PosteetId { get; set; }
+        public Guid PostId { get; set; }
 
         public override bool IsValid()
         {
@@ -23,9 +23,9 @@ namespace Posterr.Application.Posts.Commands.CreateRepost
                     .NotEmpty()
                     .WithMessage("The UserName field is required.");
 
-                RuleFor(x => x.PosteetId)
-                    .GreaterThan(0)
-                    .WithMessage("The PosteetId field is required.");
+                RuleFor(x => x.PostId)
+                    .NotNull()
+                    .WithMessage("The PostId field is required.");
             }
         }
     }

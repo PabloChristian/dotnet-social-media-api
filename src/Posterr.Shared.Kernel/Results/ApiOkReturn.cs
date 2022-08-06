@@ -1,4 +1,4 @@
-﻿namespace Posterr.Shared.Kernel.Entity
+﻿namespace Posterr.Shared.Kernel.Results
 {
     public class ApiOkReturn
     {

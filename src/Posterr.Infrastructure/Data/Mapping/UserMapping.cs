@@ -8,19 +8,9 @@ namespace Posterr.Infrastructure.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(e => e.Id);
-
-            builder.Property(e => e.Name)
-                .HasMaxLength(150)
-                .IsRequired();
-
-            builder.Property(e => e.UserName)
-                .HasMaxLength(50)
-                .IsRequired();
-
-            builder.Property(e => e.Password)
-                .HasMaxLength(150)
-                .IsRequired();
+            builder.HasKey(x => x.UserName);
+            builder.Property(x => x.UserScreeName).IsRequired();
+            builder.Property(x => x.ProfileImageUrl);
         }
     }
 }

@@ -2,12 +2,13 @@
 using Posterr.Infrastructure.Data.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Posterr.Shared.Kernel.Entity;
 
 namespace Posterr.Infrastructure.Data.Context
 {
     public class PosterrContext : DbContext
     {
-        public virtual DbSet<Post> Messages { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         public PosterrContext(DbContextOptions<PosterrContext> options) : base(options) {}
@@ -15,6 +16,7 @@ namespace Posterr.Infrastructure.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserMapping());
+            modelBuilder.ApplyConfiguration(new PostMapping());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -30,6 +32,28 @@ namespace Posterr.Infrastructure.Data.Context
                  .Build();
 
             optionsBuilder.UseSqlServer(config.GetConnectionString("PosterrConnection"));
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            var localZone = TimeZoneInfo.Local;
+
+            foreach (var entry in ChangeTracker.Entries<EntityAudit>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.Created = DateTime.UtcNow;
+                        entry.Entity.TimeZone = localZone.DisplayName;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.LastModified = DateTime.UtcNow;
+                        entry.Entity.TimeZone = localZone.DisplayName;
+                        break;
+                }
+            }
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }

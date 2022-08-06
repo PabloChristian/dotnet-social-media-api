@@ -29,7 +29,7 @@ namespace Posterr.Infrastructure.InversionOfControl
         {
             services.AddDbContext<PosterrContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
         }
 
         private static void RegisterHandlers(this IServiceCollection services)

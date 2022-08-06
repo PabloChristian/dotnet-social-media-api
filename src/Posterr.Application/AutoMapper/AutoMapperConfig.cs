@@ -10,7 +10,7 @@ namespace Posterr.Application.AutoMapper
             return new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new UserMapper());
-                cfg.AddProfile(new MessageMapper());
+                cfg.AddProfile(new PostMapper());
             });
         }
     }
