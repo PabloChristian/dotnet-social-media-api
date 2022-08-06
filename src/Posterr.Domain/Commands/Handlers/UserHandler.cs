@@ -5,7 +5,6 @@ using Posterr.Domain.Entity;
 using Posterr.Domain.Interfaces;
 using Posterr.Domain.Interfaces.Services;
 using Posterr.Shared.Kernel.Handler;
-using Posterr.Shared.Kernel.Helper;
 using Posterr.Shared.Kernel.Notifications;
 using MediatR;
 using System;
@@ -42,8 +41,6 @@ namespace Posterr.Domain.CommandHandlers
 
                     if (userExisted != null)
                         throw new BusinessException(Properties.Resources.User_AlreadyExists);
-
-                    user.Password = Cryptography.PasswordEncrypt(user.Password);
 
                     await _userRepository.AddAsync(user, cancellationToken);
                     var success = await _unitOfWork.CommitAsync(cancellationToken);

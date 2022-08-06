@@ -5,12 +5,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace Posterr.Infrastructure.Data.Context
 {
-    public class PosterrChatContext : DbContext
+    public class PosterrContext : DbContext
     {
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        public PosterrChatContext(DbContextOptions<PosterrChatContext> options) : base(options) {}
+        public PosterrContext(DbContextOptions<PosterrContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Posterr.Infrastructure.Data.Context
 #endif
                  .Build();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("PosterrChatConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("PosterrConnection"));
         }
     }
 }

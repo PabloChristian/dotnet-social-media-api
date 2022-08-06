@@ -12,9 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.0.5" />
-    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.5" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
@@ -32,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Posterr.Application\Posterr.Application.csproj" />
-    <ProjectReference Include="..\Posterr.Bot\Posterr.Bot.csproj" />
     <ProjectReference Include="..\Posterr.Domain\Posterr.Domain.csproj" />
     <ProjectReference Include="..\Posterr.Infrastructure\Posterr.Infrastructure.csproj" />
   </ItemGroup>

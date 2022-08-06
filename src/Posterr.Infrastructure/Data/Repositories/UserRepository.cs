@@ -6,10 +6,10 @@ namespace Posterr.Infrastructure.Data.Repositories
 {
     public class UserRepository : RepositoryBase<User>, IUserRepository
     {
-        public UserRepository(PosterrChatContext posterrChatContext) : base(posterrChatContext) {}
+        public UserRepository(PosterrContext PosterrContext) : base(PosterrContext) {}
 
-        public void Add(Messages messages) => Db.Messages.Add(messages);
-        public async Task AddAsync(Messages messages, CancellationToken cancellationToken) => await Db.Messages.AddAsync(messages, cancellationToken);
-        public IEnumerable<Messages> GetMessages() => Db.Messages.OrderByDescending(x => x.Date).Take(50);
+        public void Add(Messages posts) => Db.Messages.Add(posts);
+        public async Task AddAsync(Messages posts, CancellationToken cancellationToken) => await Db.Messages.AddAsync(posts, cancellationToken);
+        public IEnumerable<Messages> GetPosts() => Db.Messages.OrderByDescending(x => x.Date).Take(50);
     }
 }

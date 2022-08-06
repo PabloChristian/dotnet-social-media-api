@@ -7,8 +7,8 @@ namespace Posterr.Domain.Interfaces
 {
     public interface IUserRepository : IRepositoryBase<User>
     {
-        void Add(Messages messages);
-        Task AddAsync(Messages messages, CancellationToken cancellationToken);
-        IEnumerable<Messages> GetMessages();
+        void Add(Messages posts);
+        Task AddAsync(Messages posts, CancellationToken cancellationToken);
+        IEnumerable<Messages> GetPosts();
     }
 }

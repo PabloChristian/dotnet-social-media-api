@@ -2,7 +2,6 @@
 using Posterr.Application.AutoMapper;
 using Posterr.Domain.Interfaces;
 using Posterr.Application.Services;
-using Posterr.Application.SignalR;
 using Posterr.Domain.Entity;
 using Posterr.Shared.Kernel.Entity;
 using Posterr.Shared.Kernel.Handler;
@@ -13,7 +12,6 @@ using Posterr.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Moq;
-using Posterr.Domain.Interfaces.Messaging;
 using Xunit;
 using FluentAssertions;
 using Posterr.Tests.Fixture;
@@ -21,12 +19,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Posterr.Tests.Api.Controllers
 {
-    public class UserControllerTest : PosterrChatDbContextFixure
+    public class UserControllerTest : PosterrDbContextFixure
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mock<IMediatorHandler> _mockMediator;
-        private readonly Mock<IHubContext<MessageChatHub>> _mockChat;
-        private readonly Mock<IQueueMessageService> _mockQueue;
         private readonly IUserRepository _userRepository;
         private readonly DomainNotificationHandler _domainNotificationHandler;
         private readonly IMapper _mapper;
@@ -37,16 +33,10 @@ namespace Posterr.Tests.Api.Controllers
         {
             db = GetDbInstance();
             _unitOfWork = new UnitOfWork(db);
-            _mockChat = new Mock<IHubContext<MessageChatHub>>();
             _userRepository = new UserRepository(db);
             _mockMediator = new Mock<IMediatorHandler>();
             _domainNotificationHandler = new DomainNotificationHandler();
-            _mockMediator.Setup(x => x.RaiseEvent(It.IsAny<DomainNotification>())).Callback<DomainNotification>((x) =>
-            {
-                _domainNotificationHandler.Handle(x, CancellationToken.None);
-            });
-            _mockQueue = new Mock<IQueueMessageService>();
-            _mockQueue.Setup(x => x.SendMessageAsync(It.IsAny<MessageDto>())).Returns(Task.CompletedTask);
+            _mockMediator.Setup(x => x.RaiseEvent(It.IsAny<DomainNotification>())).Callback<DomainNotification>((x) => _domainNotificationHandler.Handle(x, CancellationToken.None));
             _mockLogger = new Mock<ILogger<UserController>>();
 
             _mapper = AutoMapperConfig.RegisterMappings().CreateMapper();
@@ -57,7 +47,7 @@ namespace Posterr.Tests.Api.Controllers
         {
             //Arrange
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             ); ;
 
             //Act
@@ -91,7 +81,7 @@ namespace Posterr.Tests.Api.Controllers
             await _unitOfWork.CommitAsync(cancellationToken);
 
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             );
 
             //Act
@@ -107,7 +97,7 @@ namespace Posterr.Tests.Api.Controllers
         {
             //Arrange
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             );
 
             //Act
@@ -140,7 +130,7 @@ namespace Posterr.Tests.Api.Controllers
             await _unitOfWork.CommitAsync(cancellationToken);
 
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             );
 
             //Act
@@ -152,14 +142,14 @@ namespace Posterr.Tests.Api.Controllers
         }
 
         [Fact]
-        public async Task Should_not_return_list_of_messages()
+        public async Task Should_not_return_list_of_posts()
         {
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             );
 
             //Act
-            var result = (await _controller.GetMessages() as OkObjectResult)?.Value as ApiOkReturn;
+            var result = (await _controller.GetPosts() as OkObjectResult)?.Value as ApiOkReturn;
             var list = result?.Data as List<Messages>;
 
             //Assert
@@ -167,7 +157,7 @@ namespace Posterr.Tests.Api.Controllers
         }
 
         [Fact]
-        public async Task Should_return_list_of_messages()
+        public async Task Should_return_list_of_posts()
         {
             //Arrange
             var message = new Messages() 
@@ -190,10 +180,10 @@ namespace Posterr.Tests.Api.Controllers
             await _unitOfWork.CommitAsync(cancellationToken);
 
             _controller = new UserController(
-                new UserService(_userRepository, _mapper), _mockChat.Object, _mockQueue.Object, _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
+                new UserService(_userRepository, _mapper), _domainNotificationHandler, _mockMediator.Object, _mockLogger.Object
             );
 
-            var result = (await _controller.GetMessages() as OkObjectResult)?.Value as ApiOkReturn;
+            var result = (await _controller.GetPosts() as OkObjectResult)?.Value as ApiOkReturn;
             var list = result?.Data as List<Messages>;
 
             list?.Count.Should().Be(2);

@@ -4,7 +4,6 @@ using Posterr.Api.Configurations;
 using Posterr.Application.AutoMapper;
 using Posterr.Infrastructure.Data.Context;
 using Posterr.Shared.Kernel.Entity;
-using Posterr.Infrastructure.Security;
 using Posterr.Infrastructure.InversionOfControl;
 
 namespace Posterr.Api
@@ -23,26 +22,17 @@ namespace Posterr.Api
                 options.AddPolicy("CorsPolicy", builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials().Build());
             });
 
-            services.AddDbContext<PosterrChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PosterrChatConnection")));
-            services.AddIdentitySetup(Configuration);
+            services.AddDbContext<PosterrContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PosterrConnection")));
             AutoMapperConfig.RegisterMappings();
             services.AddSwagger();
             services.AddSingleton(AutoMapperConfig.RegisterMappings().CreateMapper());
             services.AddMvc();
             services.AddLogging();
-            services.AddHttpClient("PosterrChat", cfg => { cfg.Timeout = TimeSpan.FromSeconds(60); });
+            services.AddHttpClient("Posterr", cfg => { cfg.Timeout = TimeSpan.FromSeconds(60); });
             services.AddHttpContextAccessor();
             services.AddMediatR(typeof(Startup));
-            services.Configure<RabbitMqOptions>(options => Configuration.GetSection("RabbitMqConfig").Bind(options));
-            services.AddMassTransit(Configuration.GetSection("RabbitMqConfig").Get<RabbitMqOptions>());
 
             services.RegisterServices();
-
-            services.AddSignalR(hubOptions =>
-            {
-                hubOptions.EnableDetailedErrors = true;
-                hubOptions.ClientTimeoutInterval = TimeSpan.FromSeconds(15);
-            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,18 +49,12 @@ namespace Posterr.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.AddMigration<PosterrChatContext>();
+            app.AddMigration<PosterrContext>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapSwagger();
-                endpoints.MapHub<Application.SignalR.MessageChatHub>("/chatHub", options =>
-                {
-                    options.TransportMaxBufferSize = 36000;
-                    options.ApplicationMaxBufferSize = 36000;
-                    options.Transports = Microsoft.AspNetCore.Http.Connections.HttpTransportType.LongPolling;
-                });
             });
         }
     }

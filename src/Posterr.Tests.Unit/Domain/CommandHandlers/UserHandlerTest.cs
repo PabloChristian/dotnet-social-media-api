@@ -16,7 +16,7 @@ using Posterr.Tests.Fixture;
 
 namespace Posterr.Tests.Domain.CommandHandlers
 {
-    public class UserHandlerTest : PosterrChatDbContextFixure
+    public class UserHandlerTest : PosterrDbContextFixure
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mock<IMediatorHandler> _mockMediator;

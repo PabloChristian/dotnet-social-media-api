@@ -7,12 +7,12 @@ namespace Posterr.Infrastructure.Data.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
-        protected readonly PosterrChatContext Db;
+        protected readonly PosterrContext Db;
         protected readonly DbSet<T> DbSet;
 
-        public RepositoryBase(PosterrChatContext posterrChatContext)
+        public RepositoryBase(PosterrContext PosterrContext)
         {
-            Db = posterrChatContext;
+            Db = PosterrContext;
             DbSet = Db.Set<T>();
         }
 

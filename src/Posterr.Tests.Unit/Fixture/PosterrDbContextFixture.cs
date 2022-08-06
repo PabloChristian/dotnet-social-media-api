@@ -4,23 +4,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Posterr.Tests.Fixture
 {
-    public class PosterrChatDbContextFixure
+    public class PosterrDbContextFixure
     {
-        protected PosterrChatContext db;
+        protected PosterrContext db;
 
-        protected static DbContextOptions<PosterrChatContext> CreateNewContextOptions()
+        protected static DbContextOptions<PosterrContext> CreateNewContextOptions()
         {
             var serviceProvider = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase()
                 .BuildServiceProvider();
 
-            var builder = new DbContextOptionsBuilder<PosterrChatContext>();
+            var builder = new DbContextOptionsBuilder<PosterrContext>();
             builder.UseInMemoryDatabase("PosterrDbTest")
                 .UseInternalServiceProvider(serviceProvider);
 
             return builder.Options;
         }
 
-        protected static PosterrChatContext GetDbInstance() => new(CreateNewContextOptions());
+        protected static PosterrContext GetDbInstance() => new(CreateNewContextOptions());
     }
 }

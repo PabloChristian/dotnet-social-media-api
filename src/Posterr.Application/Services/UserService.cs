@@ -17,14 +17,14 @@ namespace Posterr.Application.Services
             _mapper = mapper;
         }
 
-        public List<Messages> GetMessages() => 
-            _userRepository.GetMessages()
+        public List<Messages> GetPosts() => 
+            _userRepository.GetPosts()
                 .OrderByDescending(x => x.Date)
                 .Take(50)
                 .ToList();
 
-        public List<Messages> GetMessages(string username) => 
-            _userRepository.GetMessages()
+        public List<Messages> GetPosts(string username) => 
+            _userRepository.GetPosts()
                 .Where(x => x.Consumer == username || x.Sender == username)
                 .OrderByDescending(x => x.Date)
                 .Take(50)

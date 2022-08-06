@@ -5,13 +5,13 @@ namespace Posterr.Infrastructure.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly PosterrChatContext _posterrChatContext;
+        private readonly PosterrContext _PosterrContext;
 
-        public UnitOfWork(PosterrChatContext posterrChatContext) => _posterrChatContext = posterrChatContext;
+        public UnitOfWork(PosterrContext PosterrContext) => _PosterrContext = PosterrContext;
 
-        public bool Commit() => _posterrChatContext.SaveChanges() > 0;
+        public bool Commit() => _PosterrContext.SaveChanges() > 0;
 
         public async Task<bool> CommitAsync(CancellationToken cancellationToken) => 
-            await _posterrChatContext.SaveChangesAsync(cancellationToken) > 0;
+            await _PosterrContext.SaveChangesAsync(cancellationToken) > 0;
     }
 }

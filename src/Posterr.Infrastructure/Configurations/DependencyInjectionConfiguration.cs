@@ -5,7 +5,6 @@ using Posterr.Domain.CommandHandlers;
 using Posterr.Domain.Commands;
 using Posterr.Domain.Commands.Message;
 using Posterr.Domain.Interfaces;
-using Posterr.Domain.Interfaces.Messaging;
 using Posterr.Domain.Interfaces.Services;
 using Posterr.Infrastructure.Data;
 using Posterr.Infrastructure.Data.Context;
@@ -28,7 +27,7 @@ namespace Posterr.Infrastructure.InversionOfControl
 
         private static void RegisterData(this IServiceCollection services)
         {
-            services.AddDbContext<PosterrChatContext>();
+            services.AddDbContext<PosterrContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
@@ -38,15 +37,12 @@ namespace Posterr.Infrastructure.InversionOfControl
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<UserAddCommand, bool>, UserHandler>();
             services.AddScoped<IRequestHandler<MessageAddCommand, bool>, UserHandler>();
-            services.AddScoped<IRequestHandler<AuthenticateUserCommand, TokenJWT>, IdentityHandler>();
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
         }
 
         private static void RegisterApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IIdentityService, IdentityService>();
-            services.AddScoped<IQueueMessageService, QueueMessageService>();
         }
     }
 }

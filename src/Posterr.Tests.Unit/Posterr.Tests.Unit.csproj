@@ -27,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Posterr.Api\Posterr.Api.csproj" />
     <ProjectReference Include="..\Posterr.Application\Posterr.Application.csproj" />
-    <ProjectReference Include="..\Posterr.Bot\Posterr.Bot.csproj" />
     <ProjectReference Include="..\Posterr.Infrastructure\Posterr.Infrastructure.csproj" />
   </ItemGroup>
 

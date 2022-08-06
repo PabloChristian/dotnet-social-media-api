@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.OpenApi.Models;
 
 namespace Posterr.Api.Configurations
 {
@@ -17,44 +13,11 @@ namespace Posterr.Api.Configurations
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Real Time Chat",
-                    Description = "Real Time Chat API",
+                    Title = "Posterr",
+                    Description = "Posterr API",
                     Contact = new OpenApiContact { Name = "Pablo Christian Pereira Nazareth", Email = "snakepablo@hotmail.com" },
                 });
                 s.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-                var securitySchema = new OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                };
-                s.AddSecurityDefinition("Bearer", securitySchema);
-
-                s.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header,
-
-                        },
-                        new List<string>()
-                    }
-                });
             });
         }
 
@@ -63,7 +26,7 @@ namespace Posterr.Api.Configurations
             if (app == null) throw new ArgumentNullException(nameof(app));
 
             app.UseSwagger(c => { c.RouteTemplate = "/swagger/{documentName}/swagger.json"; });
-            app.UseSwaggerUI(s => { s.SwaggerEndpoint("/swagger/v1/swagger.json", "Real Time Chat v1.0");});
+            app.UseSwaggerUI(s => { s.SwaggerEndpoint("/swagger/v1/swagger.json", "Posterr v1.0");});
         }
     }
 }

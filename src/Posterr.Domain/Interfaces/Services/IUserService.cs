@@ -9,7 +9,7 @@ namespace Posterr.Domain.Interfaces.Services
     {
         List<UserDto> GetUsers();
         UserDto GetUser(Guid id);
-        List<Messages> GetMessages();
-        List<Messages> GetMessages(string username);
+        List<Messages> GetPosts();
+        List<Messages> GetPosts(string username);
     }
 }
