@@ -9,7 +9,7 @@ namespace Posterr.Application.AutoMapper.Mappers
     {
         public MessageMapper()
         {
-            CreateMap<MessageAddCommand, Messages>()
+            CreateMap<MessageAddCommand, Post>()
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => DateTime.Now));
         }
     }

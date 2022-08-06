@@ -7,7 +7,7 @@ namespace Posterr.Infrastructure.Data.Context
 {
     public class PosterrContext : DbContext
     {
-        public virtual DbSet<Messages> Messages { get; set; }
+        public virtual DbSet<Post> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         public PosterrContext(DbContextOptions<PosterrContext> options) : base(options) {}

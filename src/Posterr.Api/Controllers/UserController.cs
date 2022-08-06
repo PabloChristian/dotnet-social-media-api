@@ -1,5 +1,4 @@
 ﻿using Posterr.Domain.Interfaces.Services;
-using Posterr.Shared.Kernel.Entity;
 using Posterr.Shared.Kernel.Handler;
 using Posterr.Shared.Kernel.Notifications;
 using MediatR;
@@ -30,11 +29,5 @@ namespace Posterr.Api.Controllers
 
         [HttpGet("{user_id}")]
         public async Task<IActionResult> Get(Guid userId) => Response(await Task.Run(() => _userService.GetUser(userId)));
-
-        [HttpGet("posts")]
-        public async Task<IActionResult> GetPosts() => Response(await Task.Run(() => _userService.GetPosts()));
-		
-		[HttpGet("{user_id}/posts")]
-        public async Task<IActionResult> GetPostsById(Guid userId) => Response(await Task.Run(() => _userService.GetPostsById(userId)));
     }
 }

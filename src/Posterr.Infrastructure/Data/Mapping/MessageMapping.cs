@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Posterr.Infrastructure.Data.Mapping
 {
-    public class MessageMapping : IEntityTypeConfiguration<Messages>
+    public class MessageMapping : IEntityTypeConfiguration<Post>
     {
-        public void Configure(EntityTypeBuilder<Messages> builder)
+        public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.HasKey(e => e.Id);
 

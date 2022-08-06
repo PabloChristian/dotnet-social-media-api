@@ -124,11 +124,16 @@ to stop the execution of the containers, type "docker-compose down"
 This section is used to self-critique to reflect and write what would be good to improve over time:
 
 1. Performance:
+	1. Cache service to store the lattest requests and posts for better performance.
 2. Scalability:
+	1. Decouple the message system using RabbitMQ to create all the new posts, reposts and quotes.
+	2. Use of AWS ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service) to manage the Docker Containers.
 3. Load Balancing:
 4. High-Availability:
 5. Security:
-	- Identity
+	1. Use of .NET Identity to manage user authentication for security.
+6. Tests
+	1. Impllement integration tests to test end-to-end requests.
 
 Architecture proposal:
 

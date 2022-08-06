@@ -3,7 +3,7 @@
 namespace Posterr.Domain.Exceptions
 {
     [Serializable]
-    internal class BusinessException : Exception
+    public class BusinessException : Exception
     {
         public BusinessException()
         {
