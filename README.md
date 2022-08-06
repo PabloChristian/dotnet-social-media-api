@@ -55,17 +55,11 @@ Posts are the equivalent of Twitter's tweets. They are text-only, user-generated
 ## 📑 Demonstrations
 Images showing how the application works:
 
-##### Login Page
-![Login Page](./images/main-page.png)
+##### Home Page
+![Home Page](./images/home-page.png)
 
-##### Register Page
-![Register Page](./images/register-page.png)
-
-##### Two different users logged and chatting
-![Chat Page](./images/message-page2.png)
-
-##### Stock Command
-![Chat Page](./images/stock-command.png)
+##### User Profile Page
+![User Profile Page](./images/user-profile-page.png)
 
 ## 💻 Technologies and Patterns
 🛠 These are all the technologies and patterns used to develop this application
