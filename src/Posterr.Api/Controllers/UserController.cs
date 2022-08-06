@@ -28,29 +28,13 @@ namespace Posterr.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get() => Response(await Task.Run(() => _userService.GetUsers()));
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id) => Response(await Task.Run(() => _userService.GetUser(id)));
+        [HttpGet("{user_id}")]
+        public async Task<IActionResult> Get(Guid userId) => Response(await Task.Run(() => _userService.GetUser(userId)));
 
         [HttpGet("posts")]
         public async Task<IActionResult> GetPosts() => Response(await Task.Run(() => _userService.GetPosts()));
-
-        [HttpGet("posts/{email}")]
-        public async Task<IActionResult> GetPosts(string email)
-        {
-            var posts = await Task.Run(() => _userService.GetPosts(email));
-
-            if (posts.Any())
-            {
-                return Response(posts.Select(x => new MessageDto
-                {
-                    Consumer = x.Consumer,
-                    Message = x.Message,
-                    Sender = x.Sender,
-                    Date = x.Date
-                }));
-            }
-
-            return Response(posts);
-        }
+		
+		[HttpGet("{user_id}/posts")]
+        public async Task<IActionResult> GetPostsById(Guid userId) => Response(await Task.Run(() => _userService.GetPostsById(userId)));
     }
 }
