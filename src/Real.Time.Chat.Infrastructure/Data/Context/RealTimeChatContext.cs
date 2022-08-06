@@ -1,16 +1,16 @@
-﻿using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Infrastructure.Data.Mapping;
+﻿using Posterr.Domain.Entity;
+using Posterr.Infrastructure.Data.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Real.Time.Chat.Infrastructure.Data.Context
+namespace Posterr.Infrastructure.Data.Context
 {
-    public class RealTimeChatContext : DbContext
+    public class PosterrChatContext : DbContext
     {
         public virtual DbSet<Messages> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
-        public RealTimeChatContext(DbContextOptions<RealTimeChatContext> options) : base(options) {}
+        public PosterrChatContext(DbContextOptions<PosterrChatContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Real.Time.Chat.Infrastructure.Data.Context
 #endif
                  .Build();
 
-            optionsBuilder.UseSqlServer(config.GetConnectionString("RealTimeChatConnection"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("PosterrChatConnection"));
         }
     }
 }

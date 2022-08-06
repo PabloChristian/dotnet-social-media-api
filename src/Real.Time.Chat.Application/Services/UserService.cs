@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Shared.Kernel.Entity;
+using Posterr.Domain.Entity;
+using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Shared.Kernel.Entity;
 
-namespace Real.Time.Chat.Application.Services
+namespace Posterr.Application.Services
 {
     public class UserService : IUserService
     {

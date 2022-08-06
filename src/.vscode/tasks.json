@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Real.Time.Chat.Api/Real.Time.Chat.Api.csproj",
+                "${workspaceFolder}/Posterr.Api/Posterr.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Real.Time.Chat.Api/Real.Time.Chat.Api.csproj",
+                "${workspaceFolder}/Posterr.Api/Posterr.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Real.Time.Chat.Api/Real.Time.Chat.Api.csproj"
+                "${workspaceFolder}/Posterr.Api/Posterr.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

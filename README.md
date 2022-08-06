@@ -5,8 +5,8 @@
 
 ## 👨‍💻 Code Challenge
 
-#### Overview
-📌 The Project Manager you work with wants to build a new product, a new social media application called Posterr. Posterr is very similar to Twitter, but it has far fewer features.
+#### 📌 Overview
+The Project Manager you work with wants to build a new product, a new social media application called Posterr. Posterr is very similar to Twitter, but it has far fewer features.
 Posterr only has two pages, the homepage, and the user profile page, which are described below. Other data and actions are also detailed below.
 
 #### ✏️ Pages

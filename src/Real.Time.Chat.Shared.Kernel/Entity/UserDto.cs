@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Real.Time.Chat.Shared.Kernel.Entity
+namespace Posterr.Shared.Kernel.Entity
 {
     public class UserDto
     {

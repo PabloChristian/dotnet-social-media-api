@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Application.AutoMapper.Mappers;
+using Posterr.Application.AutoMapper.Mappers;
 
-namespace Real.Time.Chat.Application.AutoMapper
+namespace Posterr.Application.AutoMapper
 {
     public class AutoMapperConfig
     {

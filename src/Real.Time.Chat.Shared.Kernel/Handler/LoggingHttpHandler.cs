@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Shared.Kernel.Handler
+﻿namespace Posterr.Shared.Kernel.Handler
 {
     public class LoggingHttpHandler : DelegatingHandler
     {

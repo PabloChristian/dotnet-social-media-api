@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Real.Time.Chat.MessageBroker": {
+    "Posterr.MessageBroker": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"

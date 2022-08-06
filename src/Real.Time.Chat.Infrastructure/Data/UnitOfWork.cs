@@ -1,17 +1,17 @@
-﻿using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Infrastructure.Data.Context;
+﻿using Posterr.Domain.Interfaces;
+using Posterr.Infrastructure.Data.Context;
 
-namespace Real.Time.Chat.Infrastructure.Data
+namespace Posterr.Infrastructure.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly RealTimeChatContext _realtimeChatContext;
+        private readonly PosterrChatContext _posterrChatContext;
 
-        public UnitOfWork(RealTimeChatContext realtimeChatContext) => _realtimeChatContext = realtimeChatContext;
+        public UnitOfWork(PosterrChatContext posterrChatContext) => _posterrChatContext = posterrChatContext;
 
-        public bool Commit() => _realtimeChatContext.SaveChanges() > 0;
+        public bool Commit() => _posterrChatContext.SaveChanges() > 0;
 
         public async Task<bool> CommitAsync(CancellationToken cancellationToken) => 
-            await _realtimeChatContext.SaveChangesAsync(cancellationToken) > 0;
+            await _posterrChatContext.SaveChangesAsync(cancellationToken) > 0;
     }
 }

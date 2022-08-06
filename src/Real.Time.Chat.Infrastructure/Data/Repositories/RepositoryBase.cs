@@ -1,18 +1,18 @@
-﻿using Real.Time.Chat.Domain.Interfaces.Repositories;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Infrastructure.Data.Context;
+﻿using Posterr.Domain.Interfaces.Repositories;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Real.Time.Chat.Infrastructure.Data.Repositories
+namespace Posterr.Infrastructure.Data.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
     {
-        protected readonly RealTimeChatContext Db;
+        protected readonly PosterrChatContext Db;
         protected readonly DbSet<T> DbSet;
 
-        public RepositoryBase(RealTimeChatContext realtimeChatContext)
+        public RepositoryBase(PosterrChatContext posterrChatContext)
         {
-            Db = realtimeChatContext;
+            Db = posterrChatContext;
             DbSet = Db.Set<T>();
         }
 

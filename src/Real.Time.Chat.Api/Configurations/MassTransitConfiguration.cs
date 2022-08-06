@@ -1,7 +1,7 @@
 ﻿using MassTransit;
-using Real.Time.Chat.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Entity;
 
-namespace Real.Time.Chat.Api.Configurations
+namespace Posterr.Api.Configurations
 {
     public static class MassTransitConfiguration
     {

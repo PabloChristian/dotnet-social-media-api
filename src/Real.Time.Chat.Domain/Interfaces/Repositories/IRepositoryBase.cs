@@ -1,7 +1,7 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Shared.Kernel.Entity;
 using System.Linq.Expressions;
 
-namespace Real.Time.Chat.Domain.Interfaces.Repositories
+namespace Posterr.Domain.Interfaces.Repositories
 {
     public interface IRepositoryBase<T> where T : EntityBase
     {

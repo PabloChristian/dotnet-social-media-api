@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.Shared.Kernel.Notifications
+namespace Posterr.Shared.Kernel.Notifications
 {
     public class DomainNotificationHandler : INotificationHandler<DomainNotification>
     {

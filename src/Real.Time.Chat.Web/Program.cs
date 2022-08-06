@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Real.Time.Chat.Web
+namespace Posterr.Web
 {
     public class Program
     {

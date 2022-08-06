@@ -1,17 +1,17 @@
-﻿using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Helper;
+﻿using Posterr.Domain.Entity;
+using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Helper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.SignalR;
-using Real.Time.Chat.Application.SignalR;
+using Posterr.Application.SignalR;
 
-namespace Real.Time.Chat.Application.Services
+namespace Posterr.Application.Services
 {
     public class IdentityService : IIdentityService
     {

@@ -1,7 +1,7 @@
-﻿using Real.Time.Chat.Shared.Kernel.Commands;
+﻿using Posterr.Shared.Kernel.Commands;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.Shared.Kernel.Handler
+namespace Posterr.Shared.Kernel.Handler
 {
     public interface IMediatorHandler
     {

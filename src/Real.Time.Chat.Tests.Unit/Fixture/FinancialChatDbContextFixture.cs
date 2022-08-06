@@ -1,26 +1,26 @@
-﻿using Real.Time.Chat.Infrastructure.Data.Context;
+﻿using Posterr.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Real.Time.Chat.Tests.Fixture
+namespace Posterr.Tests.Fixture
 {
-    public class RealTimeChatDbContextFixure
+    public class PosterrChatDbContextFixure
     {
-        protected RealTimeChatContext db;
+        protected PosterrChatContext db;
 
-        protected static DbContextOptions<RealTimeChatContext> CreateNewContextOptions()
+        protected static DbContextOptions<PosterrChatContext> CreateNewContextOptions()
         {
             var serviceProvider = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase()
                 .BuildServiceProvider();
 
-            var builder = new DbContextOptionsBuilder<RealTimeChatContext>();
-            builder.UseInMemoryDatabase("RealTimeDbTest")
+            var builder = new DbContextOptionsBuilder<PosterrChatContext>();
+            builder.UseInMemoryDatabase("PosterrDbTest")
                 .UseInternalServiceProvider(serviceProvider);
 
             return builder.Options;
         }
 
-        protected static RealTimeChatContext GetDbInstance() => new(CreateNewContextOptions());
+        protected static PosterrChatContext GetDbInstance() => new(CreateNewContextOptions());
     }
 }

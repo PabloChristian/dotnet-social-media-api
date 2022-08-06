@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Bot\Real.Time.Chat.Bot.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Shared.Kernel\Real.Time.Chat.Shared.Kernel.csproj" />
+    <ProjectReference Include="..\Posterr.Bot\Posterr.Bot.csproj" />
+    <ProjectReference Include="..\Posterr.Shared.Kernel\Posterr.Shared.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

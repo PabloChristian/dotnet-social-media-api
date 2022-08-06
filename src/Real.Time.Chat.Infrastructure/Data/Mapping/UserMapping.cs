@@ -1,8 +1,8 @@
-﻿using Real.Time.Chat.Domain.Entity;
+﻿using Posterr.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Real.Time.Chat.Infrastructure.Data.Mapping
+namespace Posterr.Infrastructure.Data.Mapping
 {
     public class UserMapping : IEntityTypeConfiguration<User>
     {

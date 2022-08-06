@@ -1,7 +1,7 @@
-﻿using Real.Time.Chat.Domain.Commands.User;
-using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Domain.Commands.User;
+using Posterr.Shared.Kernel.Entity;
 
-namespace Real.Time.Chat.Domain.CommandHandlers
+namespace Posterr.Domain.CommandHandlers
 {
     public class AuthenticateUserCommand : LoginCommand<TokenJWT>
     {

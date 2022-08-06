@@ -1,11 +1,11 @@
-﻿using Real.Time.Chat.Api.Middlewares;
+﻿using Posterr.Api.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.Api.Configurations
+namespace Posterr.Api.Configurations
 {
     public static class MiddlewareConfiguration
     {

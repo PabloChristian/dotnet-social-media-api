@@ -1,8 +1,8 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.MessageBus.Contracts;
+﻿using Posterr.Shared.Kernel.Entity;
+using Posterr.MessageBus.Contracts;
 using MassTransit;
 
-namespace Real.Time.Chat.MessageBus.Consumers
+namespace Posterr.MessageBus.Consumers
 {
     public class CaptureMessageConsumer : IConsumer<MessageDto>
     {

@@ -1,13 +1,13 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Real.Time.Chat.Api.Configurations;
-using Real.Time.Chat.Application.AutoMapper;
-using Real.Time.Chat.Infrastructure.Data.Context;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Infrastructure.Security;
-using Real.Time.Chat.Infrastructure.InversionOfControl;
+using Posterr.Api.Configurations;
+using Posterr.Application.AutoMapper;
+using Posterr.Infrastructure.Data.Context;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Infrastructure.Security;
+using Posterr.Infrastructure.InversionOfControl;
 
-namespace Real.Time.Chat.Api
+namespace Posterr.Api
 {
     public class Startup
     {
@@ -23,14 +23,14 @@ namespace Real.Time.Chat.Api
                 options.AddPolicy("CorsPolicy", builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials().Build());
             });
 
-            services.AddDbContext<RealTimeChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("RealTimeChatConnection")));
+            services.AddDbContext<PosterrChatContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PosterrChatConnection")));
             services.AddIdentitySetup(Configuration);
             AutoMapperConfig.RegisterMappings();
             services.AddSwagger();
             services.AddSingleton(AutoMapperConfig.RegisterMappings().CreateMapper());
             services.AddMvc();
             services.AddLogging();
-            services.AddHttpClient("RealTimeChat", cfg => { cfg.Timeout = TimeSpan.FromSeconds(60); });
+            services.AddHttpClient("PosterrChat", cfg => { cfg.Timeout = TimeSpan.FromSeconds(60); });
             services.AddHttpContextAccessor();
             services.AddMediatR(typeof(Startup));
             services.Configure<RabbitMqOptions>(options => Configuration.GetSection("RabbitMqConfig").Bind(options));
@@ -59,7 +59,7 @@ namespace Real.Time.Chat.Api
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.AddMigration<RealTimeChatContext>();
+            app.AddMigration<PosterrChatContext>();
 
             app.UseEndpoints(endpoints =>
             {

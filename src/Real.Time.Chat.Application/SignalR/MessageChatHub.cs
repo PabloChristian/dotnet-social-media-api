@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace Real.Time.Chat.Application.SignalR
+namespace Posterr.Application.SignalR
 {
     public class MessageChatHub : Hub
     {

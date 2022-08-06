@@ -1,21 +1,21 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using Real.Time.Chat.Application.Services;
-using Real.Time.Chat.Domain.CommandHandlers;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Domain.Commands.Message;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Domain.Interfaces.Messaging;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Infrastructure.Data;
-using Real.Time.Chat.Infrastructure.Data.Context;
-using Real.Time.Chat.Infrastructure.Data.Repositories;
-using Real.Time.Chat.Infrastructure.ServiceBus;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+using Posterr.Application.Services;
+using Posterr.Domain.CommandHandlers;
+using Posterr.Domain.Commands;
+using Posterr.Domain.Commands.Message;
+using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interfaces.Messaging;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Infrastructure.Data;
+using Posterr.Infrastructure.Data.Context;
+using Posterr.Infrastructure.Data.Repositories;
+using Posterr.Infrastructure.ServiceBus;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
 
-namespace Real.Time.Chat.Infrastructure.InversionOfControl
+namespace Posterr.Infrastructure.InversionOfControl
 {
     public static class DependencyInjectionConfiguration
     {
@@ -28,7 +28,7 @@ namespace Real.Time.Chat.Infrastructure.InversionOfControl
 
         private static void RegisterData(this IServiceCollection services)
         {
-            services.AddDbContext<RealTimeChatContext>();
+            services.AddDbContext<PosterrChatContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
         }

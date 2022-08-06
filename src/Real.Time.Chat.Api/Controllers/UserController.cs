@@ -1,19 +1,19 @@
-﻿using Real.Time.Chat.Application.SignalR;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Domain.Commands.Message;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+﻿using Posterr.Application.SignalR;
+using Posterr.Domain.Commands;
+using Posterr.Domain.Commands.Message;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Real.Time.Chat.Bot;
-using Real.Time.Chat.Domain.Interfaces.Messaging;
+using Posterr.Bot;
+using Posterr.Domain.Interfaces.Messaging;
 
-namespace Real.Time.Chat.Api.Controllers
+namespace Posterr.Api.Controllers
 {
     [ApiController]
     [Route("api/users")]

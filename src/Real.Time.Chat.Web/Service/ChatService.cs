@@ -1,13 +1,13 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Web.ViewModel;
+﻿using Posterr.Shared.Kernel.Entity;
+using Posterr.Web.ViewModel;
 using Newtonsoft.Json;
 
-namespace Real.Time.Chat.Web.Service
+namespace Posterr.Web.Service
 {
     public class ChatService : IDisposable
     {
 #if !DEBUG
-        private const string URL = "http://realtime-chat.api:5001/";
+        private const string URL = "http://posterr-chat.api:5001/";
 #else 
         private const string URL = "https://localhost:44367/";
 #endif

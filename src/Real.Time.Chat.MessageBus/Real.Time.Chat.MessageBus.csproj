@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-RealTimeChat.MessageBroker-BF12A5E3-66B1-4F6B-9939-BE47DD82CCC8</UserSecretsId>
+    <UserSecretsId>dotnet-PosterrChat.MessageBroker-BF12A5E3-66B1-4F6B-9939-BE47DD82CCC8</UserSecretsId>
     <Configurations>Debug;Release;Production</Configurations>
   </PropertyGroup>
 
@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Bot\Real.Time.Chat.Bot.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Infrastructure\Real.Time.Chat.Infrastructure.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Shared.Kernel\Real.Time.Chat.Shared.Kernel.csproj" />
+    <ProjectReference Include="..\Posterr.Bot\Posterr.Bot.csproj" />
+    <ProjectReference Include="..\Posterr.Infrastructure\Posterr.Infrastructure.csproj" />
+    <ProjectReference Include="..\Posterr.Shared.Kernel\Posterr.Shared.Kernel.csproj" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace Real.Time.Chat.Infrastructure.Security
+namespace Posterr.Infrastructure.Security
 {
     public static class IdentitySetup
     {

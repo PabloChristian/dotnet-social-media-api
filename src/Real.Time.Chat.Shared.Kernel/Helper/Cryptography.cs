@@ -1,11 +1,11 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Real.Time.Chat.Shared.Kernel.Helper
+namespace Posterr.Shared.Kernel.Helper
 {
     public static class Cryptography
     {
-        private static readonly string _key = "RealTimeChat";
+        private static readonly string _key = "PosterrChat";
         private static readonly byte[] _Iv = { 12, 20, 45, 71, 85, 99, 110, 123 };
 
         public static string PasswordEncrypt(string password)

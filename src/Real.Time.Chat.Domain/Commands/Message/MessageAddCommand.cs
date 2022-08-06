@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Domain.Commands.Message
+﻿namespace Posterr.Domain.Commands.Message
 {
     public class MessageAddCommand : MessageCommand<bool>
     {

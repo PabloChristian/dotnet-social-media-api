@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Real.Time.Chat.Infrastructure.Data.Migrations
+namespace Posterr.Infrastructure.Data.Migrations
 {
     public partial class FirstMigration : Migration
     {

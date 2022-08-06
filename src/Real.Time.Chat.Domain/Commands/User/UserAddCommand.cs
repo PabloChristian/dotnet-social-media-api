@@ -1,6 +1,6 @@
-﻿using Real.Time.Chat.Domain.Commands.User;
+﻿using Posterr.Domain.Commands.User;
 
-namespace Real.Time.Chat.Domain.Commands
+namespace Posterr.Domain.Commands
 {
     public class UserAddCommand : UserCommand<bool>
     {

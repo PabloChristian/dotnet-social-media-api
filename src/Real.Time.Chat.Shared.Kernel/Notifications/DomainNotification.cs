@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Shared.Kernel.Notifications
+﻿namespace Posterr.Shared.Kernel.Notifications
 {
     public class DomainNotification : Event.Event
     {

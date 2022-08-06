@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Domain\Real.Time.Chat.Domain.csproj" />
+    <ProjectReference Include="..\Posterr.Domain\Posterr.Domain.csproj" />
   </ItemGroup>
 
 </Project>

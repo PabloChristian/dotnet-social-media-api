@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Real.Time.Chat.Shared.Kernel.Entity
+namespace Posterr.Shared.Kernel.Entity
 {
     public class ApiBadReturn
     {

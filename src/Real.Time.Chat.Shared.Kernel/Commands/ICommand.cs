@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Shared.Kernel.Commands
+﻿namespace Posterr.Shared.Kernel.Commands
 {
     public interface ICommand
     {

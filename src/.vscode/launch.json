@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Real.Time.Chat.Api/bin/Debug/net6.0/Real.Time.Chat.Api.dll",
+            "program": "${workspaceFolder}/Posterr.Api/bin/Debug/net6.0/Posterr.Api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Real.Time.Chat.Api",
+            "cwd": "${workspaceFolder}/Posterr.Api",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

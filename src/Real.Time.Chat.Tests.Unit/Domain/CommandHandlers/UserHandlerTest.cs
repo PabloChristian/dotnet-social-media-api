@@ -1,22 +1,22 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Application.AutoMapper;
-using Real.Time.Chat.Domain.CommandHandlers;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Domain.Commands.Message;
-using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
-using Real.Time.Chat.Infrastructure.Data;
-using Real.Time.Chat.Infrastructure.Data.Repositories;
+using Posterr.Application.AutoMapper;
+using Posterr.Domain.CommandHandlers;
+using Posterr.Domain.Commands;
+using Posterr.Domain.Commands.Message;
+using Posterr.Domain.Entity;
+using Posterr.Domain.Interfaces;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
+using Posterr.Infrastructure.Data;
+using Posterr.Infrastructure.Data.Repositories;
 using Moq;
 using Xunit;
 using FluentAssertions;
-using Real.Time.Chat.Tests.Fixture;
+using Posterr.Tests.Fixture;
 
-namespace Real.Time.Chat.Tests.Domain.CommandHandlers
+namespace Posterr.Tests.Domain.CommandHandlers
 {
-    public class UserHandlerTest : RealTimeChatDbContextFixure
+    public class UserHandlerTest : PosterrChatDbContextFixure
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mock<IMediatorHandler> _mockMediator;

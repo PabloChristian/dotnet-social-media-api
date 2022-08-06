@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.MessageBus.Handlers
+namespace Posterr.MessageBus.Handlers
 {
     public class UnhandledExceptionLogger
     {

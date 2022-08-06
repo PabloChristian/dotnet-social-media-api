@@ -3,7 +3,7 @@ using Refit;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace Real.Time.Chat.MessageBus.Contracts.Implementations
+namespace Posterr.MessageBus.Contracts.Implementations
 {
     public class ChatService : IChatService
     {
@@ -41,6 +41,6 @@ namespace Real.Time.Chat.MessageBus.Contracts.Implementations
         }
 
         public HttpClient CreateHttpClientForApi() =>
-            _httpClientFactory.CreateClient("realtimechat");
+            _httpClientFactory.CreateClient("posterrchat");
     }
 }

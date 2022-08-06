@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 
-namespace Real.Time.Chat.Bot
+namespace Posterr.Bot
 {
     public class BotCall : IDisposable
     {

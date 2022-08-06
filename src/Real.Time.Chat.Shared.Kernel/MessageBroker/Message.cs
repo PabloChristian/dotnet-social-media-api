@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.Shared.Kernel.MessageBroker
+namespace Posterr.Shared.Kernel.MessageBroker
 {
     public class Message
     {

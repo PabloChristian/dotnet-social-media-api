@@ -1,17 +1,17 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Shared.Kernel.Entity;
 using Polly;
 
-namespace Real.Time.Chat.MessageBus.Contracts.Implementations
+namespace Posterr.MessageBus.Contracts.Implementations
 {
     public class DeliveryMessageRequest : IDeliveryMessageRequest
     {
         private readonly ILogger<DeliveryMessageRequest> _logger;
-        private readonly IChatService _realtimeChatService;
+        private readonly IChatService _posterrChatService;
 
-        public DeliveryMessageRequest(ILogger<DeliveryMessageRequest> logger, IChatService realtimeChatService)
+        public DeliveryMessageRequest(ILogger<DeliveryMessageRequest> logger, IChatService posterrChatService)
         {
             _logger = logger;
-            _realtimeChatService = realtimeChatService;
+            _posterrChatService = posterrChatService;
         }
 
         public async Task<ApiOkReturn> DeliveryMessageAsync(MessageDto message) =>
@@ -24,6 +24,6 @@ namespace Real.Time.Chat.MessageBus.Contracts.Implementations
                     {
                         _logger.LogWarning(exception.Message + " - retrycount: " + retryCount);
                     })
-                .ExecuteAsync(() => _realtimeChatService.CreateApi().DeliveryMessage(message));
+                .ExecuteAsync(() => _posterrChatService.CreateApi().DeliveryMessage(message));
     }
 }

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Shared.Kernel\Real.Time.Chat.Shared.Kernel.csproj" />
+    <ProjectReference Include="..\Posterr.Shared.Kernel\Posterr.Shared.Kernel.csproj" />
   </ItemGroup>
 
   <ItemGroup>

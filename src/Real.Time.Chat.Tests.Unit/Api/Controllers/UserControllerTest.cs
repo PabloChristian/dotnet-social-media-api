@@ -1,27 +1,27 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Application.AutoMapper;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Application.Services;
-using Real.Time.Chat.Application.SignalR;
-using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
-using Real.Time.Chat.Infrastructure.Data;
-using Real.Time.Chat.Infrastructure.Data.Repositories;
-using Real.Time.Chat.Api.Controllers;
+using Posterr.Application.AutoMapper;
+using Posterr.Domain.Interfaces;
+using Posterr.Application.Services;
+using Posterr.Application.SignalR;
+using Posterr.Domain.Entity;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
+using Posterr.Infrastructure.Data;
+using Posterr.Infrastructure.Data.Repositories;
+using Posterr.Api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Moq;
-using Real.Time.Chat.Domain.Interfaces.Messaging;
+using Posterr.Domain.Interfaces.Messaging;
 using Xunit;
 using FluentAssertions;
-using Real.Time.Chat.Tests.Fixture;
+using Posterr.Tests.Fixture;
 using Microsoft.Extensions.Logging;
 
-namespace Real.Time.Chat.Tests.Api.Controllers
+namespace Posterr.Tests.Api.Controllers
 {
-    public class UserControllerTest : RealTimeChatDbContextFixure
+    public class UserControllerTest : PosterrChatDbContextFixure
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly Mock<IMediatorHandler> _mockMediator;

@@ -1,11 +1,11 @@
-﻿using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+﻿using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
 using MediatR;
 
-namespace Real.Time.Chat.Domain.CommandHandlers
+namespace Posterr.Domain.CommandHandlers
 {
     public class IdentityHandler : IRequestHandler<AuthenticateUserCommand, TokenJWT>
     {

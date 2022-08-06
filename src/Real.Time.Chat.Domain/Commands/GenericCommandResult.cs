@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
-using Real.Time.Chat.Shared.Kernel.Commands;
+using Posterr.Shared.Kernel.Commands;
 
-namespace Real.Time.Chat.Domain.Commands
+namespace Posterr.Domain.Commands
 {
     public abstract class GenericCommandResult<T> : ICommandResult<T>
     {

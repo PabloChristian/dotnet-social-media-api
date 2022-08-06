@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Application\Real.Time.Chat.Application.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Domain\Real.Time.Chat.Domain.csproj" />
+    <ProjectReference Include="..\Posterr.Application\Posterr.Application.csproj" />
+    <ProjectReference Include="..\Posterr.Domain\Posterr.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,20 +1,20 @@
-﻿using Real.Time.Chat.Domain.CommandHandlers;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+﻿using Posterr.Domain.CommandHandlers;
+using Posterr.Domain.Commands;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Net;
 using Xunit;
 using FluentAssertions;
-using Real.Time.Chat.Api.Controllers;
-using Real.Time.Chat.Tests.Fixture;
+using Posterr.Api.Controllers;
+using Posterr.Tests.Fixture;
 using Microsoft.Extensions.Logging;
 
-namespace Real.Time.Chat.Tests.Api.Controllers
+namespace Posterr.Tests.Api.Controllers
 {
-    public class IdentityControllerTest : RealTimeChatDbContextFixure
+    public class IdentityControllerTest : PosterrChatDbContextFixure
     {
         private readonly Mock<IMediatorHandler> _mockMediator;
         private readonly DomainNotificationHandler _domainNotificationHandler;

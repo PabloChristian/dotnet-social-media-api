@@ -25,10 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Real.Time.Chat.Api\Real.Time.Chat.Api.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Application\Real.Time.Chat.Application.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Bot\Real.Time.Chat.Bot.csproj" />
-    <ProjectReference Include="..\Real.Time.Chat.Infrastructure\Real.Time.Chat.Infrastructure.csproj" />
+    <ProjectReference Include="..\Posterr.Api\Posterr.Api.csproj" />
+    <ProjectReference Include="..\Posterr.Application\Posterr.Application.csproj" />
+    <ProjectReference Include="..\Posterr.Bot\Posterr.Bot.csproj" />
+    <ProjectReference Include="..\Posterr.Infrastructure\Posterr.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

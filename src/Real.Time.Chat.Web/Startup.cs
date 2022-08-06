@@ -1,6 +1,6 @@
 using Blazored.LocalStorage;
 
-namespace Real.Time.Chat.Web
+namespace Posterr.Web
 {
     public class Startup
     {

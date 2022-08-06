@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Real.Time.Chat.Domain.Exceptions
+namespace Posterr.Domain.Exceptions
 {
     [Serializable]
     internal class BusinessException : Exception

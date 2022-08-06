@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using Real.Time.Chat.Shared.Kernel.Commands;
-using Real.Time.Chat.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Commands;
+using Posterr.Shared.Kernel.Handler;
 
-namespace Real.Time.Chat.Infrastructure.ServiceBus
+namespace Posterr.Infrastructure.ServiceBus
 {
     public class MediatorHandler : IMediatorHandler
     {

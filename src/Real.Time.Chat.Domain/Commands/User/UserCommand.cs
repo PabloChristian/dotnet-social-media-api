@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Real.Time.Chat.Domain.Commands.User
+namespace Posterr.Domain.Commands.User
 {
     public class UserCommand<TResult> : GenericCommandResult<TResult>
     {

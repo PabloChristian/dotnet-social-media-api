@@ -1,9 +1,9 @@
-﻿using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Domain.Entity;
+using Posterr.Shared.Kernel.Entity;
 using System;
 using System.Collections.Generic;
 
-namespace Real.Time.Chat.Domain.Interfaces.Services
+namespace Posterr.Domain.Interfaces.Services
 {
     public interface IUserService
     {

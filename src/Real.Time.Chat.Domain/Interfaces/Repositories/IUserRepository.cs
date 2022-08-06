@@ -1,9 +1,9 @@
-﻿using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Domain.Interfaces.Repositories;
+﻿using Posterr.Domain.Entity;
+using Posterr.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Real.Time.Chat.Domain.Interfaces
+namespace Posterr.Domain.Interfaces
 {
     public interface IUserRepository : IRepositoryBase<User>
     {

@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Domain.Interfaces
+﻿namespace Posterr.Domain.Interfaces
 {
     public interface IUnitOfWork
     {

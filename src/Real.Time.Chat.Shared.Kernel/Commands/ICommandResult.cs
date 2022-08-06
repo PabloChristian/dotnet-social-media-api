@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Real.Time.Chat.Shared.Kernel.Commands
+namespace Posterr.Shared.Kernel.Commands
 {
     public interface ICommandResult<T> : IRequest<T>
     {

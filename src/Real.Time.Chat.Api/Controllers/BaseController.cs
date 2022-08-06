@@ -1,10 +1,10 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+﻿using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Notifications;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Real.Time.Chat.Api.Controllers
+namespace Posterr.Api.Controllers
 {
     [ApiController]
     public class BaseController : Controller

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Shared.Kernel.Entity;
+using Posterr.Domain.Commands;
+using Posterr.Domain.Entity;
+using Posterr.Shared.Kernel.Entity;
 
-namespace Real.Time.Chat.Application.AutoMapper.Mappers
+namespace Posterr.Application.AutoMapper.Mappers
 {
     public class UserMapper : Profile
     {

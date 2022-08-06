@@ -1,6 +1,6 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Shared.Kernel.Entity;
 
-namespace Real.Time.Chat.Domain.Entity
+namespace Posterr.Domain.Entity
 {
     public class Messages : EntityBase
     {

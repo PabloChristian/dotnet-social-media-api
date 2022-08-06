@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Real.Time.Chat.Api.Middlewares
+namespace Posterr.Api.Middlewares
 {
     public class ExceptionHandlerMiddleware
     {

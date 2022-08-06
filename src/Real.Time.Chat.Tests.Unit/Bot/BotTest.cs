@@ -1,8 +1,8 @@
-﻿using Real.Time.Chat.Bot;
+﻿using Posterr.Bot;
 using Xunit;
 using FluentAssertions;
 
-namespace Real.Time.Chat.Tests.Bot
+namespace Posterr.Tests.Bot
 {
     public class BotTest
     {

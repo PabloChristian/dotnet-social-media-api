@@ -1,9 +1,9 @@
-using Real.Time.Chat.Shared.Kernel.Entity;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Infrastructure.Security;
-using Real.Time.Chat.MessageBus.Configurations;
-using Real.Time.Chat.MessageBus.Contracts;
-using Real.Time.Chat.MessageBus.Contracts.Implementations;
+using Posterr.Shared.Kernel.Entity;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Infrastructure.Security;
+using Posterr.MessageBus.Configurations;
+using Posterr.MessageBus.Contracts;
+using Posterr.MessageBus.Contracts.Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Real.Time.Chat.MessageBroker
+namespace Posterr.MessageBroker
 {
     public class Program
     {
@@ -49,7 +49,7 @@ namespace Real.Time.Chat.MessageBroker
                     var rabbitMqOptions = configuration.GetSection("RabbitMqConfig").Get<RabbitMqOptions>();
                     services.AddRabbitMq(rabbitMqOptions);
                     services.AddIdentitySetup(configuration);
-                    services.AddHttpClient("realtimechat", c =>
+                    services.AddHttpClient("posterrchat", c =>
                     {
                         c.Timeout = TimeSpan.FromSeconds(5);
                         c.BaseAddress = new Uri(configuration.GetValue<string>("ApiUrl"));

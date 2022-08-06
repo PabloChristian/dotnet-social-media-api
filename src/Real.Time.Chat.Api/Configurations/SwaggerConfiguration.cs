@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Real.Time.Chat.Api.Configurations
+namespace Posterr.Api.Configurations
 {
     public static class SwaggerConfiguration
     {

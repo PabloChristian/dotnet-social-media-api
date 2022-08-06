@@ -1,4 +1,4 @@
-﻿namespace Real.Time.Chat.Web.ViewModel
+﻿namespace Posterr.Web.ViewModel
 {
     public class UserViewModel
     {

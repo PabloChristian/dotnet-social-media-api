@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace Real.Time.Chat.Api
+namespace Posterr.Api
 {
     public class Program
     {

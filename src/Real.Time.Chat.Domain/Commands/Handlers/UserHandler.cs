@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
-using Real.Time.Chat.Domain.Commands;
-using Real.Time.Chat.Domain.Commands.Message;
-using Real.Time.Chat.Domain.Entity;
-using Real.Time.Chat.Domain.Interfaces;
-using Real.Time.Chat.Domain.Interfaces.Services;
-using Real.Time.Chat.Shared.Kernel.Handler;
-using Real.Time.Chat.Shared.Kernel.Helper;
-using Real.Time.Chat.Shared.Kernel.Notifications;
+using Posterr.Domain.Commands;
+using Posterr.Domain.Commands.Message;
+using Posterr.Domain.Entity;
+using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interfaces.Services;
+using Posterr.Shared.Kernel.Handler;
+using Posterr.Shared.Kernel.Helper;
+using Posterr.Shared.Kernel.Notifications;
 using MediatR;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Real.Time.Chat.Domain.Exceptions;
+using Posterr.Domain.Exceptions;
 
-namespace Real.Time.Chat.Domain.CommandHandlers
+namespace Posterr.Domain.CommandHandlers
 {
     public class UserHandler : IRequestHandler<UserAddCommand, bool>, IRequestHandler<MessageAddCommand, bool>
     {

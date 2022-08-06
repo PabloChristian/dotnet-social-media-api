@@ -1,9 +1,9 @@
-﻿using Real.Time.Chat.Shared.Kernel.Entity;
+﻿using Posterr.Shared.Kernel.Entity;
 using MassTransit;
 using Microsoft.Extensions.Options;
-using Real.Time.Chat.Domain.Interfaces.Messaging;
+using Posterr.Domain.Interfaces.Messaging;
 
-namespace Real.Time.Chat.Application.Services
+namespace Posterr.Application.Services
 {
     public class QueueMessageService : IQueueMessageService
     {
