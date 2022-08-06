@@ -134,6 +134,7 @@ This section is used to self-critique to reflect and write what would be good to
 3. Load Balancing:
 4. High-Availability:
 5. Security:
+	- Identity
 
 Architecture proposal:
 

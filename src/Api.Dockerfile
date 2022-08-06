@@ -11,7 +11,6 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine3.15-amd64 AS build-env
 COPY ["./Posterr.sln", "./"]
-COPY ["./Posterr.Bot/Posterr.Bot.csproj", "./Posterr.Bot/" ]
 COPY ["./Posterr.Shared.Kernel/Posterr.Shared.Kernel.csproj", "./Posterr.Shared.Kernel/" ]
 COPY ["./Posterr.Infrastructure/Posterr.Infrastructure.csproj", "./Posterr.Infrastructure/" ]
 COPY ["./Posterr.Domain/Posterr.Domain.csproj", "./Posterr.Domain/" ]
