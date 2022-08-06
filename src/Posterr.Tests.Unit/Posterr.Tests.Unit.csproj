@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Posterr.Infrastructure\Posterr.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Api\Controllers\" />
+  </ItemGroup>
+
 </Project>
