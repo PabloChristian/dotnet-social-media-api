@@ -1,10 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Posterr.Domain.Interfaces.Services;
 using Posterr.Shared.Kernel.Handler;
 using Posterr.Shared.Kernel.Notifications;
 using Posterr.Application.Posteets.Queries.GetPosteetsByUser;
 using Posterr.Application.Posteets.Queries.GetPosteetsList;
+using Posterr.Application.Post.Commands.CreateQuote;
+using Posterr.Application.Posts.Commands.CreateRepost;
+using Posterr.Application.Post.Commands.CreatePost;
 
 namespace Posterr.Api.Controllers
 {
@@ -12,17 +14,14 @@ namespace Posterr.Api.Controllers
     [Route("api/posts")]
     public class PostController : BaseController
     {
-        private readonly IPostService _postService;
         private readonly ILogger<PostController> _logger;
 
         public PostController(
-            IPostService postService,
             INotificationHandler<DomainNotification> notifications,
             IMediatorHandler mediator,
             ILogger<PostController> logger)
             : base(notifications, mediator)
         {
-            _postService = postService;
             _logger = logger;
         }
 
@@ -55,20 +54,24 @@ namespace Posterr.Api.Controllers
         }*/
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
         {
             return Ok(await _mediator.SendCommandResult(command));
         }
 
         [HttpPost("repost")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateRepost([FromBody] CreateRepostCommand command)
         {
             return Ok(await _mediator.SendCommandResult(command));
         }
 
         [HttpPost("quote")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteCommand command)
         {
+            var teste = new CreateQuoteCommand();
             return Ok(await _mediator.SendCommandResult(command));
         }
     }

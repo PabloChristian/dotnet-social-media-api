@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Posterr.Application.Post.Commands.CreateQuote;
 using Posterr.Domain.Exceptions;
 using Posterr.Domain.Interface;
-using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interface.Repositories;
 
 namespace Posterr.Application.Posts.Commands.CreateQuote
 {
@@ -30,7 +29,7 @@ namespace Posterr.Application.Posts.Commands.CreateQuote
                 PostMessage = request.QuotePost,
             };
 
-            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity, currentDateValue, currentDateValue.AddDays(1));
+            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
 
             if (totalPosts >= POSTS_PER_DAY)
                 throw new LimitPostsExceededException($"It is not allowed to post more than \"{POSTS_PER_DAY}\" posts in one day. Total posted: ${totalPosts}");

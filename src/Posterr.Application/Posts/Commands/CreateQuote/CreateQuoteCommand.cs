@@ -25,7 +25,7 @@ namespace Posterr.Application.Post.Commands.CreateQuote
                     .WithMessage("The UserName field is required.");
 
                 RuleFor(x => x.PostId)
-                    .GreaterThan(0)
+                    .NotNull()
                     .WithMessage("The PosteetId field is required.");
 
                 RuleFor(x => x.Quote)

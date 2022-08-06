@@ -2,12 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Posterr.Application.Common.Interfaces;
-using Posterr.Domain.Interface;
-using Posterr.Domain.Interfaces;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using Posterr.Domain.Interface.Repositories;
 
 namespace Posterr.Application.Posteets.Queries.GetPosteetsList
 {

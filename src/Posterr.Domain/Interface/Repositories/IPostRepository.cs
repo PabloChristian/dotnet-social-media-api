@@ -1,7 +1,6 @@
 ﻿using Posterr.Domain.Entity;
-using Posterr.Domain.Interfaces.Repositories;
 
-namespace Posterr.Domain.Interfaces
+namespace Posterr.Domain.Interface.Repositories
 {
     public interface IPostRepository : IRepositoryBase<User>
     {

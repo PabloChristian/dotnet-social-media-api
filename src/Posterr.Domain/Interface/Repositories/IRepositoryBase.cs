@@ -1,7 +1,7 @@
 ﻿using Posterr.Shared.Kernel.Entity;
 using System.Linq.Expressions;
 
-namespace Posterr.Domain.Interfaces.Repositories
+namespace Posterr.Domain.Interface.Repositories
 {
     public interface IRepositoryBase<T> where T : EntityBase
     {
