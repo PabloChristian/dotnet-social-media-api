@@ -1,0 +1,199 @@
+﻿@using Real.Time.Chat.Bot
+@using Real.Time.Chat.Shared.Kernel.Entity;
+@inject Blazored.LocalStorage.ILocalStorageService LocalStore
+@using Microsoft.AspNetCore.SignalR.Client;
+@using Real.Time.Chat.Web.Service
+@inject NavigationManager UriHelper;
+
+@page "/home"
+<div class="p-3 mb-2 bg-dark text-white">
+<div class="container">
+    <nav class="nav navbar-default">
+        <div class="navbar-brand">
+            <span><b>User logged:</b> @sender (Name: @name)</span>
+            <br />
+            <button class="btn btn-primary" @onclick="DoLogOut">Leave Chat</button>
+        </div>
+    </nav>
+    <br />
+    <div class="clearfix"></div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="form-group">
+                <label for="users"><b>Select user to send message:</b></label>
+                <select @bind="@consumer" name="users" class="form-control">
+                    <option></option>
+                    @foreach (var item in users.Where(x => x.UserName != sender))
+                    {
+                        <option value="@item.UserName">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <b>Message to send:</b> <input type="text" name="txtmsg" id="txtmsg" @bind="@message" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="button" value="Send Message" class="btn btn-success" @onclick="SendMessage" name="btnsend" id="btnsend" />
+                <br />
+            </div>
+
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <b>Messages History</b>
+                        <br />(showing the last 50 messages and ordered by timestamp)
+                    </div>
+                    <br />
+                    <div class="panel-footer border-primary" style="min-height:400px;">
+                        <div id="divmsg">
+                            <span class="border border-dark">
+                            @foreach (var message in messages.OrderByDescending(x => x.Date).Take(50))
+                            {
+                                string name = @message.Sender.Equals("Bot") ? @message.Sender : users.Where(x => x.UserName.Equals(@message.Sender)).FirstOrDefault().Name;
+                                if (@message.Sender.Equals(@sender))
+                                {
+                                    <font color="green"><span><b>@name</b>: @message.Message</span> </font>    
+                                }
+                                else
+                                {
+                                    <span><b>@name</b>: @message.Message</span>      
+                                }
+                                <br />
+                            }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+@code {
+    List<UserDto> users = new List<UserDto>();
+    private HubConnection hubConnection;
+    public string consumer = "";
+    public string message = "";
+    public string sender = "";
+    public string name = "";
+    private List<MessageDto> messages = new List<MessageDto>();
+
+    protected async override Task OnInitializedAsync()
+    {
+        sender = await GetUserNameAsync(sender);
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl($"{new ChatService().GetURL()}chatHub?username=" + sender, (opts) =>
+            {
+                opts.HttpMessageHandlerFactory = (message) =>
+                {
+                    if (message is HttpClientHandler clientHandler)
+                        clientHandler.ServerCertificateCustomValidationCallback +=
+                            (sender, certificate, chain, sslPolicyErrors) => { return true; };
+                    return message;
+                };
+            })
+            .WithAutomaticReconnect()
+            .Build();
+
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        {
+            messages.Insert(0, new MessageDto { Sender = user, Message = message });
+            InvokeAsync(StateHasChanged);
+        });
+
+        hubConnection.On<UserDto>("NewUserRegistered", (userDto) =>
+        {
+            users.Insert(0, userDto);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+
+        var token = await GetTokenAsync();
+
+        await GetObjectsAsync(token);
+    }
+
+    private async Task<string> GetTokenAsync()
+    {
+        try
+        {
+            return await LocalStore.GetItemAsync<string>("token");
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
+    private async Task GetObjectsAsync(string token)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(token))
+            {
+                users = await new ChatService().GetUser(token);
+                messages = await new ChatService().GetUseMessages(token, sender);
+                name = users.Where(x => x.UserName.Equals(sender)).FirstOrDefault()?.Name;
+            }
+        }
+        catch
+        {
+
+        }
+
+        await Task.CompletedTask;
+    }
+
+    private async Task<string> GetUserNameAsync(string sender = "")
+    {
+        try
+        {
+            return await LocalStore.GetItemAsync<string>("username");
+        }
+        catch
+        {
+            return sender;
+        }
+    }
+
+    public async Task DoLogOut()
+    {
+        await LocalStore.ClearAsync();
+        UriHelper.NavigateTo("/login");
+    }
+
+    public async Task SendMessage()
+    {
+        try
+        {
+            var token = await GetTokenAsync();
+
+            if (!BotHelper.IsStockCall(message))
+            {
+                messages.Insert(0, new MessageDto()
+                {
+                    Sender = sender,
+                    Message = message
+                });
+                await InvokeAsync(StateHasChanged);
+            }
+
+            using(var chat = new ChatService())
+            await chat.SendMessage(token, sender, consumer, message);
+
+            message = "";
+        }
+        catch
+        {
+            UriHelper.NavigateTo("/login");
+        }
+
+        await Task.CompletedTask;
+    }
+}

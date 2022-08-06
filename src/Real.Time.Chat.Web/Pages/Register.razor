@@ -1,0 +1,91 @@
+﻿@inject NavigationManager UriHelper;
+@inject HttpClient Http
+@using Newtonsoft.Json;
+@using Real.Time.Chat.Shared.Kernel.Entity;
+@using ViewModel;
+
+@page "/register"
+
+<div class="p-3 mb-2 bg-dark text-white">
+<div class="container">
+    <h3>Register</h3>
+    <div class="form-group">
+        <label for="name"><b>Name</b></label>
+        <input type="text" name="name" class="form-control" @bind="@name" />
+    </div>
+    <div class="form-group">
+        <label for="username"><b>Username</b></label>
+        <input type="text" name="username" class="form-control" @bind="@username" />
+    </div>
+
+    <div class="form-group">
+        <label for="password"><b>Password</b></label>
+        <input type="password" class="form-control" name="password" @bind="@password" />
+    </div>
+    <div class="form-group">
+        <label for="second-password"><b>Type your password again</b></label>
+        <input type="password" class="form-control" name="second-password" @bind="@secondPassword" />
+    </div>
+    <span class="text-danger">@loginErrorMessage</span>
+    <br>
+    @foreach (var error in errors)
+    {
+        <p class="text-danger">@error</p>
+    }
+    <div>
+        <button class="btn btn-primary" @onclick="NewUser">Register</button>
+        <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+    </div>
+</div>
+</div>
+
+@code {
+    string name = string.Empty;
+    string username = string.Empty;
+    string password = string.Empty;
+    string secondPassword = string.Empty;
+    string loginErrorMessage = string.Empty;
+    List<string> errors = new List<string>();
+
+    protected async Task NewUser()
+    {
+        var model = new UserViewModel
+        {
+            UserName = username,
+            Password = password,
+            SecondPassword = secondPassword,
+            Name = name
+        };
+
+        var response = await new Chat.Web.Service.ChatService().PostNewUser(model);
+
+        try
+        {
+            if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                errors.Add("Internal error");
+                await Task.CompletedTask;
+            }
+            else 
+            {
+                var actionResult = JsonConvert.DeserializeObject<ApiOkReturn>(await response.Content.ReadAsStringAsync());
+                if (actionResult.Success)
+                    UriHelper.NavigateTo("Login");
+                else
+                {
+                    var result = JsonConvert.DeserializeObject<ApiBadReturn>(await response.Content.ReadAsStringAsync());
+                    errors = result?.Errors?.ToList();
+                }
+            }
+        }
+        catch
+        {
+            var actionResult = JsonConvert.DeserializeObject<ApiBadReturn>(await response.Content.ReadAsStringAsync());
+            errors = actionResult?.Errors?.ToList();
+        }
+
+        StateHasChanged();
+    }
+
+    void Cancel() => UriHelper.NavigateTo("Login");
+}

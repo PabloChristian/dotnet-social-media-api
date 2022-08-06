@@ -1,0 +1,75 @@
+version: "3"
+services:
+    realtime-db:
+        image: "mcr.microsoft.com/mssql/server:2019-CU8-ubuntu-16.04"
+        container_name: "realtime-db"
+        ports:
+            - "1435:1433"
+        volumes: 
+            - sqlsystem:/var/opt/mssql/
+            - sqldata:/var/opt/sqlserver/data
+            - sqllog:/var/opt/sqlserver/log
+            - sqlbackup:/var/opt/sqlserver/backup
+        environment:
+            SA_PASSWORD: "dev@1234"
+            ACCEPT_EULA: "Y"
+
+    realtimechat:
+        container_name: "realtimechat"
+        build: 
+            context: .
+            dockerfile: ./Api.Dockerfile
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - DB_CONNECTION_STRING=Server=realtime-db;Database=realtime;User=sa;Password=dev@1234
+        ports: 
+            - "8082:5001"
+        networks:
+            default:
+                aliases: 
+                    - realtime-chat.api
+        depends_on: 
+            - realtime-db
+
+    rabbitmq-service:
+        container_name: rabbitmq-service2
+        tty: true
+        hostname: rabbitmq
+        ports:
+            - 15673:15673
+            - 5673:5673
+        image: rabbitmq:3-management
+        depends_on: 
+            - realtime-db
+            - realtimechat
+
+    realtimechat-worker:
+        container_name: "realtimechat-worker"
+        build: 
+            context: .
+            dockerfile: ./MessageBus.Dockerfile
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=Production
+        depends_on: 
+            - realtimechat
+            - realtime-db
+            - rabbitmq-service
+
+    web-app:
+        container_name: "realtimechat-webapp"
+        build: 
+            context: .
+            dockerfile: ./Web.Dockerfile
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=Production
+        ports: 
+            - "8080:5002"
+        depends_on: 
+            - realtime-db
+            - realtimechat
+            - rabbitmq-service
+volumes:
+    sqlsystem:
+    sqldata:
+    sqllog:
+    sqlbackup:
