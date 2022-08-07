@@ -10,9 +10,14 @@ namespace Posterr.Infrastructure.Data.Mapping
         {
             builder.HasKey(e => e.Id);
 
+            builder.Property(x => x.PostMessage);
+            builder.Property(x => x.UserId);
+            builder.Property(x => x.UserName);
+            builder.Property(x => x.RepostId);
+
             builder.HasOne(x => x.User)
                 .WithMany(x => x.PostMessage)
-                .HasForeignKey(x => x.UserName)
+                .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.Repost)

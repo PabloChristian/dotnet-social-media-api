@@ -14,6 +14,8 @@ namespace Posterr.Api.Controllers
     [Route("api/posts")]
     public class PostController : BaseController
     {
+        private const int DEFAULT_POSTS_TAKE_VALUE = 10;
+
         public PostController(INotificationHandler<DomainNotification> notifications,IMediatorHandler mediator,ILogger<PostController> _)
             : base(notifications, mediator) {}
 
@@ -22,7 +24,7 @@ namespace Posterr.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPosts(
             [FromQuery] int skip = 0,
-            [FromQuery] int take = 10)
+            [FromQuery] int take = DEFAULT_POSTS_TAKE_VALUE)
         {
             var query = new GetPostListQuery { Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(query, new CancellationToken()));
@@ -34,7 +36,7 @@ namespace Posterr.Api.Controllers
         public async Task<IActionResult> GetPostsByUserId(
             [FromRoute] string userId,
             [FromQuery] int skip = 0,
-            [FromQuery] int take = 5)
+            [FromQuery] int take = DEFAULT_POSTS_TAKE_VALUE)
         {
             var command = new GetPostByUserQuery { UserName = userId, Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
