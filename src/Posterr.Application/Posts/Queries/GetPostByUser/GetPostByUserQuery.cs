@@ -2,7 +2,7 @@
 using Posterr.Application.Posts.Query;
 using Posterr.Domain.ViewModel.Post;
 
-namespace Posterr.Application.Posteets.Queries.GetPosteetsByUser
+namespace Posterr.Application.Post.Queries.GetPostByUser
 {
     public class GetPostByUserQuery : PostQuery<PostListViewModel>
     {

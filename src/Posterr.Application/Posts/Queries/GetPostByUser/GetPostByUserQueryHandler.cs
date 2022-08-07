@@ -6,7 +6,7 @@ using Posterr.Domain.Interface.Repositories;
 using Posterr.Domain.ViewModel.Post;
 using Posterr.Domain.ViewModel.Posts;
 
-namespace Posterr.Application.Posteets.Queries.GetPosteetsByUser
+namespace Posterr.Application.Post.Queries.GetPostByUser
 {
     public class GetPostByUserQueryHandler : IRequestHandler<GetPostByUserQuery, PostListViewModel>
     {

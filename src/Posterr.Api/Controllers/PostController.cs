@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Posterr.Shared.Kernel.Handler;
 using Posterr.Shared.Kernel.Notifications;
-using Posterr.Application.Posteets.Queries.GetPosteetsByUser;
 using Posterr.Application.Post.Commands.CreateQuote;
 using Posterr.Application.Posts.Commands.CreateRepost;
 using Posterr.Application.Post.Commands.CreatePost;
-using Posterr.Application.Posteets.Queries.GetPostList;
+using Posterr.Application.Post.Queries.GetPostList;
+using Posterr.Application.Post.Queries.GetPostByUser;
 
 namespace Posterr.Api.Controllers
 {
@@ -42,7 +42,7 @@ namespace Posterr.Api.Controllers
 
         /*[HttpGet("DateRange")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<PosteetsListDto>> GetByDateRange([FromQuery] GetPostByDataRangeQuery command)
+        public async Task<ActionResult<PostListViewModel>> GetByDateRange([FromQuery] GetPostByDataRangeQuery command)
             => Ok(await _mediator.SendCommandResult(command));
         */
 

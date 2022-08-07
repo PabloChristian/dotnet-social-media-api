@@ -14,8 +14,8 @@ services:
             SA_PASSWORD: "dev@1234"
             ACCEPT_EULA: "Y"
 
-    Posterr:
-        container_name: "Posterr"
+    posterr:
+        container_name: "posterr"
         build: 
             context: .
             dockerfile: ./Api.Dockerfile

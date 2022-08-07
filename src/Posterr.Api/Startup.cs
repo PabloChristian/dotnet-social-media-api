@@ -22,13 +22,16 @@ namespace Posterr.Api
                 options.AddPolicy("CorsPolicy", builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials().Build());
             });
 
-            services.AddDbContext<PosterrContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PosterrConnection")));
+            services.AddDbContext<PosterrContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("PosterrConnection")
+                )
+            );
             AutoMapperConfig.RegisterMappings();
             services.AddSwagger();
             services.AddSingleton(AutoMapperConfig.RegisterMappings().CreateMapper());
             services.AddMvc();
             services.AddLogging();
-            services.AddHttpClient("Posterr", cfg => { cfg.Timeout = TimeSpan.FromSeconds(60); });
             services.AddHttpContextAccessor();
             services.AddMediatR(typeof(Startup));
 

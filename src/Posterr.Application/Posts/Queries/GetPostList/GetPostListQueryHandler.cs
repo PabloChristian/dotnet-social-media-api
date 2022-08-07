@@ -6,14 +6,14 @@ using Posterr.Domain.Interface.Repositories;
 using Posterr.Domain.ViewModel.Post;
 using Posterr.Domain.ViewModel.Posts;
 
-namespace Posterr.Application.Posteets.Queries.GetPostList
+namespace Posterr.Application.Post.Queries.GetPostList
 {
-    public class GetPosteetsListQueryHandler : IRequestHandler<GetPostListQuery, PostListViewModel>
+    public class GetPostListQueryHandler : IRequestHandler<GetPostListQuery, PostListViewModel>
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
 
-        public GetPosteetsListQueryHandler(IPostRepository postRepository, IMapper mapper)
+        public GetPostListQueryHandler(IPostRepository postRepository, IMapper mapper)
         {
             _postRepository = postRepository;
             _mapper = mapper;

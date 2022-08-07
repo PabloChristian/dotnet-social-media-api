@@ -1,1 +1,1 @@
-dotnet ef migrations add InitialCreate --context PosterrContext --output-dir Migrations
+dotnet ef migrations add InitialCreate --project Posterr.Infrastructure --context PosterrContext --output-dir Data/Migrations

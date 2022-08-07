@@ -2,12 +2,12 @@
 {
     public class PostViewModel
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Post { get; set; }
         public string UserName { get; set; }
         public string UserScreeName { get; set; }
         public string UserProfileImageUrl { get; set; }
-        public int? RepostId { get; set; }
+        public Guid? RepostId { get; set; }
         public string RepostPost { get; set; }
         public string RepostUserName { get; set; }
         public string RepostUserScreenName { get; set; }
