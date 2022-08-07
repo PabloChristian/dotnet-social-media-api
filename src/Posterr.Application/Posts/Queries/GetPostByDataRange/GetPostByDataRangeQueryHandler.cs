@@ -3,6 +3,8 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Posterr.Domain.Interface.Repositories;
+using Posterr.Domain.ViewModel.Post;
+using Posterr.Domain.ViewModel.Posts;
 
 namespace Posterr.Application.Posteets.Queries.GetPosteetsByDataRange
 {
@@ -20,7 +22,7 @@ namespace Posterr.Application.Posteets.Queries.GetPosteetsByDataRange
         public async Task<PostListViewModel> Handle(GetPostByDataRangeQuery request, CancellationToken cancellationToken)
         {
             var posteets = await _postRepository.GetPostsByDate(request.StartDate,request.EndDate)
-                .ProjectTo<PostDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<PostViewModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
             var postListViewModel = new PostListViewModel

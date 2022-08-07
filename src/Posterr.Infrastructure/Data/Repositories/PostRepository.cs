@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Posterr.Application.Posteets.Queries.GetPosteetsByUser;
 using Posterr.Domain.Entity;
-using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interface.Repositories;
 using Posterr.Infrastructure.Data.Context;
 
 namespace Posterr.Infrastructure.Data.Repositories
@@ -10,7 +9,7 @@ namespace Posterr.Infrastructure.Data.Repositories
     {
         public PostRepository(PosterrContext context) : base(context) {}
 
-        public long GetTotalPostsByDateAndUser(Guid userName, DateTime dateStart, DateTime dateEnd)
+        public long GetTotalPostsByDateAndUser(string userName, DateTime dateStart, DateTime dateEnd)
         {
             return _context.Posts
                 .Where(p => p.UserName == userName && p.Created >= dateStart && p.Created < dateEnd)
@@ -36,7 +35,7 @@ namespace Posterr.Infrastructure.Data.Repositories
                 .Take(take);
         }
 
-        public IQueryable<Post> GetPostsByUser(Guid user, int skip = 0, int take = 10)
+        public IQueryable<Post> GetPostsByUser(string user, int skip = 0, int take = 10)
         {
             return _context.Posts
                 .Where(p => p.UserName.Equals(user))

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Posterr.Application.Posteets.Queries;
+using Posterr.Domain.ViewModel.Posts;
 
 namespace Posterr.Application.AutoMapper.Mappers
 {
@@ -7,7 +7,7 @@ namespace Posterr.Application.AutoMapper.Mappers
     {
         public PostEntityToDtoMapper()
         {
-            CreateMap<Domain.Entity.Post, PostDto>()
+            CreateMap<Domain.Entity.Post, PostViewModel>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(d => d.Post, opt => opt.MapFrom(s => s.PostMessage))
                 .ForMember(d => d.UserName, opt => opt.MapFrom(s => s.UserName))

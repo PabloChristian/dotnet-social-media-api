@@ -14,16 +14,8 @@ namespace Posterr.Api.Controllers
     [Route("api/posts")]
     public class PostController : BaseController
     {
-        private readonly ILogger<PostController> _logger;
-
-        public PostController(
-            INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator,
-            ILogger<PostController> logger)
-            : base(notifications, mediator)
-        {
-            _logger = logger;
-        }
+        public PostController(INotificationHandler<DomainNotification> notifications,IMediatorHandler mediator,ILogger<PostController> _)
+            : base(notifications, mediator) {}
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,11 +28,11 @@ namespace Posterr.Api.Controllers
             return Ok(await _mediator.SendCommandResult(query, new CancellationToken()));
         }
 
-        [HttpGet("/users/{userId}")]
+        [HttpGet("users/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPostsByUserId(
-            [FromRoute] Guid userId,
+            [FromRoute] string userId,
             [FromQuery] int skip = 0,
             [FromQuery] int take = 5)
         {
@@ -51,32 +43,25 @@ namespace Posterr.Api.Controllers
         /*[HttpGet("DateRange")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<PosteetsListDto>> GetByDateRange([FromQuery] GetPostByDataRangeQuery command)
-        {
-            return Ok(await _mediator.SendCommandResult(command));
-        }*/
+            => Ok(await _mediator.SendCommandResult(command));
+        */
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
-        {
-            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
-        }
+            => Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
 
-        [HttpPost("repost")]
+        [HttpPost("reposts")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateRepost([FromBody] CreateRepostCommand command)
-        {
-            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
-        }
+            => Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
 
-        [HttpPost("quote")]
+        [HttpPost("quotes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteCommand command)
-        {
-            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
-        }
+            => Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
     }
 }

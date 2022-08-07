@@ -1,10 +1,12 @@
 ﻿using MediatR;
+using Posterr.Application.Posts.Query;
+using Posterr.Domain.ViewModel.Post;
 
 namespace Posterr.Application.Posteets.Queries.GetPosteetsByUser
 {
-    public class GetPostByUserQuery : IRequest<PostListViewModel>
+    public class GetPostByUserQuery : PostQuery<PostListViewModel>
     {
-        public Guid UserName { get; set; }
+        public string UserName { get; set; }
         public int Skip { get; set; }
         public int Take { get; set; }
     }

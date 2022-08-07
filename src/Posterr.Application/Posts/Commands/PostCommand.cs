@@ -6,7 +6,7 @@ namespace Posterr.Application.Posts.Commands
     public class PostCommand<TResult> : GenericCommandResult<TResult>
     {
         public Guid Id { get; private set; }
-        public Guid UserName { get; set; }
+        public string UserName { get; set; }
         public string Post { get; set; }
 
         public PostCommand() { Id = new Guid(); }

@@ -1,6 +1,6 @@
-﻿namespace Posterr.Application.Posteets.Queries
+﻿namespace Posterr.Domain.ViewModel.Posts
 {
-    public class PostDto
+    public class PostViewModel
     {
         public int Id { get; set; }
         public string Post { get; set; }

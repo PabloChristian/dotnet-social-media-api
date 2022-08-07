@@ -11,7 +11,7 @@ namespace Posterr.Application.Post.Commands.CreateQuote
 
         public override bool IsValid()
         {
-            ValidationResult = new CreateQuoteCommandValidator<CreateQuoteCommand>().Validate(this);
+            ValidationResult = new CreateQuoteCommandValidator().Validate(this);
             return ValidationResult.IsValid;
         }
 

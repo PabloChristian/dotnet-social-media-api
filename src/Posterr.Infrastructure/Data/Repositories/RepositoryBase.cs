@@ -1,7 +1,7 @@
-﻿using Posterr.Domain.Interfaces.Repositories;
-using Posterr.Shared.Kernel.Entity;
+﻿using Posterr.Shared.Kernel.Entity;
 using Posterr.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Posterr.Domain.Interface.Repositories;
 
 namespace Posterr.Infrastructure.Data.Repositories
 {

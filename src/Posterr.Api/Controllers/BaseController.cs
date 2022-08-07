@@ -40,16 +40,17 @@ namespace Posterr.Api.Controllers
             });
         }
 
-        protected void NotifyModelStateErrors()
+        protected void NotifyModelStateErrors(CancellationToken cancellationToken)
         {
             var erros = ModelState.Values.SelectMany(v => v.Errors);
             foreach (var erro in erros)
             {
                 var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                NotifyError(string.Empty, erroMsg, cancellationToken);
             }
         }
 
-        protected void NotifyError(string code, string message) => _mediator.RaiseEvent(new DomainNotification(code, message));
+        protected void NotifyError(string code, string message, CancellationToken cancellationToken) 
+            => _mediator.RaiseEvent(new DomainNotification(code, message), cancellationToken);
     }
 }

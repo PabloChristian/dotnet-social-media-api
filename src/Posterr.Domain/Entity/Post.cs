@@ -7,7 +7,7 @@ namespace Posterr.Domain.Entity
     {
         [MaxLength(777)]
         public string PostMessage { get; set; }
-        public Guid UserName { get; set; }
+        public string UserName { get; set; }
         public User User { get; set; }
         public Guid? RepostId { get; set; }
         public virtual Post Repost { get; set; }

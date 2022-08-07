@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Posterr.Domain.ViewModel.Post;
 using System;
 
 namespace Posterr.Application.Posteets.Queries.GetPosteetsByDataRange

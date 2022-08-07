@@ -9,7 +9,6 @@ namespace Posterr.Application.AutoMapper
         {
             return new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new UserMapper());
                 cfg.AddProfile(new PostEntityToDtoMapper());
                 cfg.AddProfile(new PostEntityToViewModelMapper());
             });
