@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Posterr.Domain.Interface.Repositories;
 
-namespace Posterr.Application.Posteets.Queries.GetPosteetsList
+namespace Posterr.Application.Posteets.Queries.GetPostList
 {
     public class GetPosteetsListQueryHandler : IRequestHandler<GetPostListQuery, PostListViewModel>
     {

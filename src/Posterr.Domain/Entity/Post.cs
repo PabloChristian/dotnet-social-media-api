@@ -9,7 +9,7 @@ namespace Posterr.Domain.Entity
         public string PostMessage { get; set; }
         public Guid UserName { get; set; }
         public User User { get; set; }
-        public int? RepostId { get; set; }
+        public Guid? RepostId { get; set; }
         public virtual Post Repost { get; set; }
         public ICollection<Post> Reposts { get; private set; }
     }

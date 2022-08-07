@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Posterr.Application.Posteets.Queries.GetPosteetsList
+namespace Posterr.Application.Posteets.Queries.GetPostList
 {
     public class GetPostListQuery : IRequest<PostListViewModel>
     {

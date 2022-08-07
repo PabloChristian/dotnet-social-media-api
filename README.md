@@ -83,6 +83,8 @@ Patterns and Techniques:
 - Unit of Work Pattern
 - Domain Notification
 - Domain Message
+- Domain Exception
+- Domain Helper
 
 ## Architecture
 The project solution was based on DDD (Domain Driven Design) concept.

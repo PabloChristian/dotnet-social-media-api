@@ -2,7 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Posterr.Domain.Interfaces;
+using Posterr.Domain.Interface.Repositories;
 
 namespace Posterr.Application.Posteets.Queries.GetPosteetsByDataRange
 {

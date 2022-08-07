@@ -1,44 +1,47 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Posterr.Application.Post.Commands.CreateQuote;
 using Posterr.Domain.Exceptions;
+using Posterr.Domain.Helper;
 using Posterr.Domain.Interface;
 using Posterr.Domain.Interface.Repositories;
+using Posterr.Domain.ViewModel.Post;
 
 namespace Posterr.Application.Posts.Commands.CreateQuote
 {
-    public class CreateQuoteCommandHandler : IRequestHandler<CreateQuoteCommand, Guid>
+    public class CreateQuoteCommandHandler : IRequestHandler<CreateQuoteCommand, CreatePostViewModel>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
-        private const int POSTS_PER_DAY = 5;
+        private readonly IMapper _mapper;
 
-        public CreateQuoteCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository)
+        public CreateQuoteCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateQuoteCommand request, CancellationToken cancellationToken)
+        public async Task<CreatePostViewModel> Handle(CreateQuoteCommand request, CancellationToken cancellationToken)
         {
             var currentDateValue = DateTime.Today;
 
             var entity = new Domain.Entity.Post
             {
                 UserName = request.UserName,
-                RepostId = request.PosteetId,
-                PostMessage = request.QuotePost,
+                RepostId = request.Id,
+                PostMessage = request.Quote,
             };
 
             var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
 
-            if (totalPosts >= POSTS_PER_DAY)
-                throw new LimitPostsExceededException($"It is not allowed to post more than \"{POSTS_PER_DAY}\" posts in one day. Total posted: ${totalPosts}");
+            PostHelper.ValidatePostCount(totalPosts);
 
             _postRepository.Add(entity);
 
             await _unitOfWork.CommitAsync(cancellationToken);
 
-            return entity.Id;
+            return _mapper.Map<CreatePostViewModel>(entity);
         }
     }
 }

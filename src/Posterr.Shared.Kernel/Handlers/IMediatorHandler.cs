@@ -1,11 +1,10 @@
 ﻿using Posterr.Shared.Kernel.Commands;
-using System.Threading.Tasks;
 
 namespace Posterr.Shared.Kernel.Handler
 {
     public interface IMediatorHandler
     {
-        Task<TResult> SendCommandResult<TResult>(ICommandResult<TResult> command);
-        Task RaiseEvent<T>(T @event) where T : class;
+        Task<TResult> SendCommandResult<TResult>(ICommandResult<TResult> command, CancellationToken cancellationToken);
+        Task RaiseEvent<T>(T @event, CancellationToken cancellationToken) where T : class;
     }
 }

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Posterr.Shared.Kernel.Handler;
 using Posterr.Shared.Kernel.Notifications;
 using Posterr.Application.Posteets.Queries.GetPosteetsByUser;
-using Posterr.Application.Posteets.Queries.GetPosteetsList;
 using Posterr.Application.Post.Commands.CreateQuote;
 using Posterr.Application.Posts.Commands.CreateRepost;
 using Posterr.Application.Post.Commands.CreatePost;
+using Posterr.Application.Posteets.Queries.GetPostList;
 
 namespace Posterr.Api.Controllers
 {
@@ -31,8 +31,8 @@ namespace Posterr.Api.Controllers
             [FromQuery] int skip = 0,
             [FromQuery] int take = 10)
         {
-            var command = new GetPostListQuery { Skip = skip, Take = take };
-            return Ok(await _mediator.SendCommandResult(command));
+            var query = new GetPostListQuery { Skip = skip, Take = take };
+            return Ok(await _mediator.SendCommandResult(query, new CancellationToken()));
         }
 
         [HttpGet("/users/{userId}")]
@@ -43,7 +43,7 @@ namespace Posterr.Api.Controllers
             [FromQuery] int take = 5)
         {
             var command = new GetPostByUserQuery { UserName = userId, Skip = skip, Take = take };
-            return Ok(await _mediator.SendCommandResult(command));
+            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
         }
 
         /*[HttpGet("DateRange")]
@@ -57,22 +57,21 @@ namespace Posterr.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
         {
-            return Ok(await _mediator.SendCommandResult(command));
+            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
         }
 
         [HttpPost("repost")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateRepost([FromBody] CreateRepostCommand command)
         {
-            return Ok(await _mediator.SendCommandResult(command));
+            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
         }
 
         [HttpPost("quote")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteCommand command)
         {
-            var teste = new CreateQuoteCommand();
-            return Ok(await _mediator.SendCommandResult(command));
+            return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
         }
     }
 }

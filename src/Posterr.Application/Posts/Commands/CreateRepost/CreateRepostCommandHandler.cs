@@ -1,24 +1,28 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Posterr.Application.Posts.Commands.CreateRepost;
 using Posterr.Domain.Exceptions;
+using Posterr.Domain.Helper;
 using Posterr.Domain.Interface;
 using Posterr.Domain.Interface.Repositories;
+using Posterr.Domain.ViewModel.Post;
 
 namespace Posterr.Application.Posteets.Commands.CreateReposteet
 {
-    public class CreateRepostCommandHandler : IRequestHandler<PostAddCommand<CreateRepostCommand>, Guid>
+    public class CreateRepostCommandHandler : IRequestHandler<CreateRepostCommand, CreatePostViewModel>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
-        private const int POSTS_PER_DAY = 5;
+        private readonly IMapper _mapper;
 
-        public CreateRepostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository)
+        public CreateRepostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Guid> Handle(CreateRepostCommand request, CancellationToken cancellationToken)
+        public async Task<CreatePostViewModel> Handle(CreateRepostCommand request, CancellationToken cancellationToken)
         {
             var currentDateValue = DateTime.Today;
 
@@ -30,14 +34,15 @@ namespace Posterr.Application.Posteets.Commands.CreateReposteet
 
             var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
 
-            if (totalPosts >= POSTS_PER_DAY)
-                throw new LimitPostsExceededException($"It is not allowed to post more than \"{POSTS_PER_DAY}\" posts in one day. Total posted: ${totalPosts}");
+            PostHelper.ValidatePostCount(totalPosts);
 
-            _postRepository.Add(entity);
+            await _postRepository.AddAsync(entity, cancellationToken);
 
-            await _unitOfWork.CommitAsync(cancellationToken);
+            bool userCreated = await _unitOfWork.CommitAsync(cancellationToken);
 
-            return entity.Id;
+            if (!userCreated) throw new UserNotCreatedException();
+
+            return _mapper.Map<CreatePostViewModel>(entity);
         }
     }
 }
