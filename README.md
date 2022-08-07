@@ -62,7 +62,7 @@ Images showing how the application works:
 ![User Profile Page](./images/user-profile-page.png)
 
 ## 💻 Technologies and Patterns
-🛠 These are all the technologies and patterns used to develop this application
+These are all the technologies and patterns used to develop this application
 ##### BackEnd
 - [C# .NET 6.0 Web API](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [MediatR](https://www.nuget.org/packages/MediatR)
@@ -86,7 +86,7 @@ Patterns and Techniques:
 - Domain Exception
 - Domain Helper
 
-## Architecture
+## 🛠 Architecture
 The project solution was based on DDD (Domain Driven Design) concept.
 ![DDD](./images/project-architecture.png)
 
@@ -103,7 +103,7 @@ If you want to run the project outside containers, you must also have the follow
 - [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [SQLServer](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads)
 
-## Executing the Project
+## ⚙️ Executing the Project
 To execute the project, follow the steps below:
 
 #### Important Notes
@@ -122,7 +122,7 @@ to stop the execution of the containers, type "docker-compose down"
 3. This script will run the projects and open the browsers.
 
 
-## Critique
+## 🤝 Critique
 This section is used to self-critique to reflect and write what would be good to improve over time:
 
 1. Performance:
@@ -135,8 +135,9 @@ This section is used to self-critique to reflect and write what would be good to
 5. Security:
 	1. Use of .NET Identity to manage user authentication for security.
 6. Tests
-	1. Impllement integration tests to test end-to-end requests.
+	1. Implement remaining tests left for the other classes.
+	2. Implement integration tests to test end-to-end requests.
 
 Architecture proposal:
 
-This architecture would allow to achieve all the topics described.
+This architecture would allow to achieve most of the topics described.

@@ -27,6 +27,7 @@ namespace Posterr.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPosts(
             [FromQuery] int skip = 0,
             [FromQuery] int take = 10)
@@ -37,6 +38,7 @@ namespace Posterr.Api.Controllers
 
         [HttpGet("/users/{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPostsByUserId(
             [FromRoute] Guid userId,
             [FromQuery] int skip = 0,
@@ -55,6 +57,7 @@ namespace Posterr.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreatePost([FromBody] CreatePostCommand command)
         {
             return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
@@ -62,6 +65,7 @@ namespace Posterr.Api.Controllers
 
         [HttpPost("repost")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateRepost([FromBody] CreateRepostCommand command)
         {
             return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
@@ -69,6 +73,7 @@ namespace Posterr.Api.Controllers
 
         [HttpPost("quote")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateQuote([FromBody] CreateQuoteCommand command)
         {
             return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
