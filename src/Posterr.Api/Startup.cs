@@ -5,6 +5,8 @@ using Posterr.Application.AutoMapper;
 using Posterr.Infrastructure.Data.Context;
 using Posterr.Shared.Kernel.Entity;
 using Posterr.Infrastructure.InversionOfControl;
+using System.Reflection;
+using Posterr.Application;
 
 namespace Posterr.Api
 {
@@ -33,7 +35,7 @@ namespace Posterr.Api
             services.AddMvc();
             services.AddLogging();
             services.AddHttpContextAccessor();
-            services.AddMediatR(typeof(Startup));
+            services.AddApplication();
 
             services.RegisterServices();
         }

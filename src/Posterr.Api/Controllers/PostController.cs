@@ -16,7 +16,10 @@ namespace Posterr.Api.Controllers
     {
         private const int DEFAULT_POSTS_TAKE_VALUE = 10;
 
-        public PostController(INotificationHandler<DomainNotification> notifications,IMediatorHandler mediator,ILogger<PostController> _)
+        public PostController(
+            INotificationHandler<DomainNotification> notifications,
+            IMediatorHandler mediator,
+            ILogger<PostController> _)
             : base(notifications, mediator) {}
 
         [HttpGet]

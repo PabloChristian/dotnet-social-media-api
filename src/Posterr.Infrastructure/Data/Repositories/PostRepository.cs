@@ -5,7 +5,7 @@ using Posterr.Infrastructure.Data.Context;
 
 namespace Posterr.Infrastructure.Data.Repositories
 {
-    public class PostRepository : RepositoryBase<User>, IPostRepository
+    public class PostRepository : RepositoryBase<Post>, IPostRepository
     {
         public PostRepository(PosterrContext context) : base(context) {}
 
@@ -45,8 +45,5 @@ namespace Posterr.Infrastructure.Data.Repositories
                 .Skip(skip)
                 .Take(take);
         }
-
-        public void Add(Post posts) => _context.Posts.Add(posts);
-        public async Task AddAsync(Post posts, CancellationToken cancellationToken) => await _context.Posts.AddAsync(posts, cancellationToken);
     }
 }

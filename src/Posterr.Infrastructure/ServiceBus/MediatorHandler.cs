@@ -10,8 +10,13 @@ namespace Posterr.Infrastructure.ServiceBus
 
         public MediatorHandler(IMediator mediator) => _mediator = mediator;
 
-        public Task RaiseEvent<T>(T @event, CancellationToken cancellationToken) where T : class => _mediator.Publish(@event, cancellationToken);
-        public async Task<TResult> SendCommandResult<TResult>(ICommandResult<TResult> command, CancellationToken cancellationToken) 
+        public Task RaiseEvent<T>(T @event, CancellationToken cancellationToken = default) 
+            where T : class => _mediator.Publish(@event, cancellationToken);
+
+        public async Task<TResult> SendCommandResult<TResult>(ICommandResult<TResult> command, CancellationToken cancellationToken = default) 
             => await _mediator.Send(command,cancellationToken);
+
+        public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
+            => await _mediator.Send(request, cancellationToken);
     }
 }
