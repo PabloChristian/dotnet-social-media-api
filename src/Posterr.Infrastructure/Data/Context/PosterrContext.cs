@@ -1,12 +1,11 @@
 ﻿using Posterr.Domain.Entity;
-using Posterr.Infrastructure.Data.Mapping;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Posterr.Shared.Kernel.Entity;
 
 namespace Posterr.Infrastructure.Data.Context
 {
-    public class PosterrContext : DbContext
+    public partial class PosterrContext : DbContext
     {
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -15,8 +14,9 @@ namespace Posterr.Infrastructure.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserMapping());
-            modelBuilder.ApplyConfiguration(new PostMapping());
+            modelBuilder.HasDefaultSchema("dbo");
+            CreateDataBaseTables(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PosterrContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
 

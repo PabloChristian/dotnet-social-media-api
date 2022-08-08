@@ -21,7 +21,7 @@ services:
             dockerfile: ./Api.Dockerfile
         environment:
             - ASPNETCORE_ENVIRONMENT=Production
-            - DB_CONNECTION_STRING=Server=posterr-db;Database=posterrdb2;User=sa;Password=dev@1234
+            - DB_CONNECTION_STRING=Server=posterr-db;Database=posterrdb;User=sa;Password=dev@1234
         ports: 
             - "5001:5001"
         networks:

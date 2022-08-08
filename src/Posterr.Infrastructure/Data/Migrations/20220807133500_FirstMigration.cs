@@ -8,7 +8,7 @@ namespace Posterr.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Posts",
+                name: "posts",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -24,27 +24,39 @@ namespace Posterr.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UserName = table.Column<string>(maxLength: 14, nullable: false),
                     UserScreenName = table.Column<string>(maxLength: 14, nullable: false),
-                    ProfileImageUrl = table.Column<string>(maxLength: 100, nullable: false)
+                    ProfileImageUrl = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "users",
+                columns: new[] { "Id", "UserName", "UserScreenName", "ProfileImageUrl" },
+                values: new object[,]
+                {
+                                { "f9028ad9-c2a6-4467-b739-549a3d8e25eb", "test1","test1",null },
+                                { "c9930f0e-e8e3-419b-b7e4-c169f42e6545", "test2","test2",null },
+                                { "5fcc945d-6ed2-40b6-bf21-2a090e99588c", "test3","test3",null },
+                                { "5a55a21c-2144-432c-943c-6530b0143cac", "test4","test4",null }
+                }
+            );
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Messages");
+                name: "posts");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "users");
         }
     }
 }

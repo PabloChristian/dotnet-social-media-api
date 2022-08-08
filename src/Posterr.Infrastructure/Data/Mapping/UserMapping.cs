@@ -12,6 +12,42 @@ namespace Posterr.Infrastructure.Data.Mapping
             builder.Property(x => x.UserName).IsRequired();
             builder.Property(x => x.UserScreenName).IsRequired();
             builder.Property(x => x.ProfileImageUrl);
+
+            CreateSeed(builder);
+        }
+
+        private static void CreateSeed(EntityTypeBuilder<User> builder)
+        {
+            builder.HasData(new User() { 
+                Id = Guid.NewGuid(),
+                UserName = "test1",
+                UserScreenName = "test1",
+                ProfileImageUrl = ""
+            });
+
+            builder.HasData(new User()
+            {
+                Id = Guid.NewGuid(),
+                UserName = "test2",
+                UserScreenName = "test2",
+                ProfileImageUrl = ""
+            });
+
+            builder.HasData(new User()
+            {
+                Id = Guid.NewGuid(),
+                UserName = "test3",
+                UserScreenName = "test3",
+                ProfileImageUrl = ""
+            });
+
+            builder.HasData(new User()
+            {
+                Id = Guid.NewGuid(),
+                UserName = "test4",
+                UserScreenName = "test4",
+                ProfileImageUrl = ""
+            });
         }
     }
 }
