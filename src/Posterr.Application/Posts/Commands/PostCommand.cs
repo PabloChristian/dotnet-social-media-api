@@ -7,7 +7,7 @@ namespace Posterr.Application.Posts.Commands
     {
         public Guid Id { get; private set; }
         public string UserName { get; set; }
-        public string Post { get; set; }
+        public string PostMessage { get; set; }
 
         public PostCommand() { Id = new Guid(); }
 
@@ -25,7 +25,7 @@ namespace Posterr.Application.Posts.Commands
                     .NotEmpty().WithMessage("The UserName field is required.")
                     .NotNull().WithMessage("The UserName field is required.");
 
-                RuleFor(x => x.Post)
+                RuleFor(x => x.PostMessage)
                     .NotEmpty().WithMessage("The Post field is required.")
                     .Length(1, 777).WithMessage("The Post field must be between 1 and 777 characters.");
             }

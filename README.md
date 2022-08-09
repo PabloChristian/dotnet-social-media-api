@@ -52,15 +52,6 @@ Posts are the equivalent of Twitter's tweets. They are text-only, user-generated
 	<li>✔ Quote-post: Users can repost other user's posts and leave a comment along with it (like Twitter Quote Tweet) limited to original and reposts (not quote-posts)</li>
 </ul>
 
-## 📑 Demonstrations
-Images showing how the application works:
-
-##### Home Page
-![Home Page](./images/home-page.png)
-
-##### User Profile Page
-![User Profile Page](./images/user-profile-page.png)
-
 ## 💻 Technologies and Patterns
 These are all the technologies and patterns used to develop this application
 ##### BackEnd
@@ -71,7 +62,6 @@ These are all the technologies and patterns used to develop this application
 - [Xunit](https://www.nuget.org/packages/xunit)
 - [FluentAssertions](https://www.nuget.org/packages/FluentAssertions)
 - [Moq](https://www.nuget.org/packages/Moq)
-- **TODO: Pagination
 
 Patterns and Techniques:
 - TDD (Test Driven Development)
@@ -131,13 +121,9 @@ This section is used to self-critique to reflect and write what would be good to
 	1. Decouple the message system using RabbitMQ to create all the new posts, reposts and quotes.
 	2. Use of AWS ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service) to manage the Docker Containers.
 3. Load Balancing:
-4. High-Availability:
-5. Security:
+    1. Use of AWS Load Balancer to balance the requests between the containers.
+4. Security:
 	1. Use of .NET Identity to manage user authentication for security.
-6. Tests
+5. Tests
 	1. Implement remaining tests left for the other classes.
-	2. Implement integration tests to test end-to-end requests.
-
-Architecture proposal:
-
-This architecture would allow to achieve most of the topics described.
+	2. Implement integration tests to test end-to-end requests

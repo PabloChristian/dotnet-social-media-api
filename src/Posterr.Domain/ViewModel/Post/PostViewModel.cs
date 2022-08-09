@@ -3,9 +3,9 @@
     public class PostViewModel
     {
         public Guid Id { get; set; }
-        public string Post { get; set; }
+        public string PostMessage { get; set; }
         public string UserName { get; set; }
-        public string UserScreeName { get; set; }
+        public string UserScreenName { get; set; }
         public string UserProfileImageUrl { get; set; }
         public Guid? RepostId { get; set; }
         public string RepostPost { get; set; }

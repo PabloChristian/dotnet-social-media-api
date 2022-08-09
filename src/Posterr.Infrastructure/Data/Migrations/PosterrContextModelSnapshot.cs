@@ -41,7 +41,14 @@ namespace Posterr.Infrastructure.Data.Migrations
                     .HasColumnType("uniqueidentifier")
                     .HasDefaultValue(null);
 
+                b.Property<string>("Created")
+                    .HasColumnType("nvarchar(50)");
+
                 b.HasKey("Id");
+
+                b.HasIndex("RepostId");
+
+                b.HasIndex("UserName");
 
                 b.ToTable("Posts");
             });
@@ -66,7 +73,12 @@ namespace Posterr.Infrastructure.Data.Migrations
                     .HasColumnType("nvarchar(50)")
                     .HasMaxLength(50);
 
+                b.Property<string>("Created")
+                    .HasColumnType("nvarchar(50)");
+
                 b.HasKey("Id");
+
+                b.HasIndex("UserName");
 
                 b.ToTable("Users");
             });

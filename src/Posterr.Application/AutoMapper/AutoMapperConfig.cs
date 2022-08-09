@@ -11,6 +11,7 @@ namespace Posterr.Application.AutoMapper
             {
                 cfg.AddProfile(new PostEntityToDtoMapper());
                 cfg.AddProfile(new PostEntityToViewModelMapper());
+                cfg.AddProfile<MappingProfile>();
             });
         }
     }

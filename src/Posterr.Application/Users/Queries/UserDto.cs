@@ -18,7 +18,7 @@ namespace Posterr.Application.Users.Queries
                 .ForMember(d => d.UserName, opt => opt.MapFrom(s => s.UserName))
                 .ForMember(d => d.UserScreeName, opt => opt.MapFrom(s => s.UserScreenName))
                 .ForMember(d => d.ProfileImageUrl, opt => opt.MapFrom(s => s.ProfileImageUrl))
-                .ForMember(d => d.Joined, opt => opt.MapFrom(s => s.Joined.ToString("MMMM dd, yyyy")))
+                .ForMember(d => d.Joined, opt => opt.MapFrom(s => Convert.ToDateTime(s.Created).ToString("MMMM dd, yyyy")))
                 .ForMember(d => d.PostsCount, opt => opt.MapFrom(s => s.PostMessage.Any() ? s.PostMessage.Count : 0));
         }
     }

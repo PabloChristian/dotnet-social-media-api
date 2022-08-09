@@ -12,7 +12,7 @@ namespace Posterr.Infrastructure.Data.Context
         public void CreateDataBaseTables(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Domain.Entity.Post>().ToTable("posts");
-            modelBuilder.Entity<Domain.Entity.User>().ToTable("isers");
+            modelBuilder.Entity<Domain.Entity.User>().ToTable("users");
         }
     }
 }

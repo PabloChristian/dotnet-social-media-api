@@ -30,6 +30,7 @@ namespace Posterr.Application.Posteets.Commands.CreateReposteet
             {
                 UserName = request.UserName,
                 RepostId = request.Id,
+                PostMessage = request.PostMessage
             };
 
             var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));

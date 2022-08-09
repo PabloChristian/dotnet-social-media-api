@@ -12,6 +12,7 @@ namespace Posterr.Infrastructure.Data.Mapping
             builder.Property(x => x.UserName).IsRequired();
             builder.Property(x => x.UserScreenName).IsRequired();
             builder.Property(x => x.ProfileImageUrl);
+            builder.Property(x => x.Created);
 
             CreateSeed(builder);
         }
@@ -22,7 +23,8 @@ namespace Posterr.Infrastructure.Data.Mapping
                 Id = Guid.NewGuid(),
                 UserName = "test1",
                 UserScreenName = "test1",
-                ProfileImageUrl = ""
+                ProfileImageUrl = "",
+                Created = "August 09, 2022"
             });
 
             builder.HasData(new User()
@@ -30,7 +32,8 @@ namespace Posterr.Infrastructure.Data.Mapping
                 Id = Guid.NewGuid(),
                 UserName = "test2",
                 UserScreenName = "test2",
-                ProfileImageUrl = ""
+                ProfileImageUrl = "",
+                Created = "August 08, 2022"
             });
 
             builder.HasData(new User()
@@ -38,7 +41,8 @@ namespace Posterr.Infrastructure.Data.Mapping
                 Id = Guid.NewGuid(),
                 UserName = "test3",
                 UserScreenName = "test3",
-                ProfileImageUrl = ""
+                ProfileImageUrl = "",
+                Created = "August 07, 2022"
             });
 
             builder.HasData(new User()
@@ -46,7 +50,8 @@ namespace Posterr.Infrastructure.Data.Mapping
                 Id = Guid.NewGuid(),
                 UserName = "test4",
                 UserScreenName = "test4",
-                ProfileImageUrl = ""
+                ProfileImageUrl = "",
+                Created = "August 06, 2022"
             });
         }
     }

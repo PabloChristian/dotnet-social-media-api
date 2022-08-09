@@ -36,6 +36,7 @@ namespace Posterr.Infrastructure.InversionOfControl
             services.AddDbContext<PosterrContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         private static void RegisterHandlers(this IServiceCollection services)

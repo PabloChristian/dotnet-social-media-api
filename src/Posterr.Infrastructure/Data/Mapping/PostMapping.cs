@@ -14,6 +14,7 @@ namespace Posterr.Infrastructure.Data.Mapping
             builder.Property(x => x.UserId);
             builder.Property(x => x.UserName);
             builder.Property(x => x.RepostId);
+            builder.Property(x => x.Created);
 
             builder.HasOne(x => x.User)
                 .WithMany(x => x.PostMessage)
