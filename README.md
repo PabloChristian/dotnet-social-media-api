@@ -82,6 +82,7 @@ Patterns and Techniques:
 
 ## 🛠 Architecture
 The project solution was based on DDD (Domain Driven Design) concept.
+
 ![DDD](./images/architecture.png)
 
 ## Requirements
