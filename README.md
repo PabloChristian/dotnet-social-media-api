@@ -52,6 +52,10 @@ Posts are the equivalent of Twitter's tweets. They are text-only, user-generated
 	<li>✔ Quote-post: Users can repost other user's posts and leave a comment along with it (like Twitter Quote Tweet) limited to original and reposts (not quote-posts)</li>
 </ul>
 
+## 📑 Demonstrations
+Swagger documentation showing the application API routes:
+![Swagger](./images/swagger.png)
+
 ## 💻 Technologies and Patterns
 These are all the technologies and patterns used to develop this application
 ##### BackEnd
@@ -78,7 +82,7 @@ Patterns and Techniques:
 
 ## 🛠 Architecture
 The project solution was based on DDD (Domain Driven Design) concept.
-![DDD](./images/project-architecture.png)
+![DDD](./images/architecture.png)
 
 ## Requirements
 I recommend following the option 01, so you wont need to install and run all the other tools needed for the project to work.
