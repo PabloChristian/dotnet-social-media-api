@@ -12,6 +12,6 @@
         public string RepostUserName { get; set; }
         public string RepostUserScreenName { get; set; }
         public string RepostUserProfileImageUrl { get; set; }
-        public DateTime Created { get; set; }
+        public string Created { get; set; }
     }
 }

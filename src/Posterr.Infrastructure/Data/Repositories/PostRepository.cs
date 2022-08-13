@@ -13,7 +13,7 @@ namespace Posterr.Infrastructure.Data.Repositories
         {
             return _context.Posts
                 .Where(p => p.UserName == userName && p.Created >= dateStart && p.Created < dateEnd)
-                .AsNoTracking().Count();
+                .AsNoTracking().AsEnumerable().Count();
         }
 
         public IQueryable<Post> GetPostsByDate(DateTime? dateStart, DateTime? dateEnd)

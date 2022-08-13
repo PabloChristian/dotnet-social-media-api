@@ -19,12 +19,12 @@ namespace Posterr.Infrastructure.Data.Mapping
 
         private static void CreateSeed(EntityTypeBuilder<User> builder)
         {
-            builder.HasData(new User() { 
+            builder.HasData(new User() {
                 Id = Guid.NewGuid(),
                 UserName = "test1",
                 UserScreenName = "test1",
                 ProfileImageUrl = "",
-                Created = "August 09, 2022"
+                Created = "2022-08-09 00:00:00"
             });
 
             builder.HasData(new User()
@@ -33,7 +33,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test2",
                 UserScreenName = "test2",
                 ProfileImageUrl = "",
-                Created = "August 08, 2022"
+                Created = "2022-08-08 00:00:00"
             });
 
             builder.HasData(new User()
@@ -42,7 +42,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test3",
                 UserScreenName = "test3",
                 ProfileImageUrl = "",
-                Created = "August 07, 2022"
+                Created = "2022-08-07 00:00:00"
             });
 
             builder.HasData(new User()
@@ -51,7 +51,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test4",
                 UserScreenName = "test4",
                 ProfileImageUrl = "",
-                Created = "August 06, 2022"
+                Created = "2022-08-06 00:00:00"
             });
         }
     }

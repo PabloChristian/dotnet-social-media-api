@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Posterr.Domain.Exceptions;
 
 namespace Posterr.Api.Middlewares
 {
@@ -15,13 +16,20 @@ namespace Posterr.Api.Middlewares
                 await _next(httpContext);
             }catch(Exception e)
             {
-                Console.WriteLine($"Something went wrong: {e.Message}");
+                Console.WriteLine($"Error: Something went wrong: {e.Message}");
                 await HandleExceptionAsync(httpContext, e);
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext httpContext, Exception _)
+        private static Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
+            if(exception is DomainException)
+            {
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return httpContext.Response.WriteAsync(exception.Message);
+            }
+
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             return httpContext.Response.WriteAsync("Request could not be processed, internal Server Error");

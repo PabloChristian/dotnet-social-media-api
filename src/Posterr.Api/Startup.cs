@@ -7,6 +7,7 @@ using Posterr.Shared.Kernel.Entity;
 using Posterr.Infrastructure.InversionOfControl;
 using System.Reflection;
 using Posterr.Application;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Posterr.Api
 {

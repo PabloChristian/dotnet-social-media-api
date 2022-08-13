@@ -41,8 +41,8 @@ namespace Posterr.Infrastructure.Data.Migrations
                     .HasColumnType("uniqueidentifier")
                     .HasDefaultValue(null);
 
-                b.Property<string>("Created")
-                    .HasColumnType("nvarchar(50)");
+                b.Property<DateTime>("Created")
+                    .HasColumnType("datetime");
 
                 b.HasKey("Id");
 
@@ -73,8 +73,8 @@ namespace Posterr.Infrastructure.Data.Migrations
                     .HasColumnType("nvarchar(50)")
                     .HasMaxLength(50);
 
-                b.Property<string>("Created")
-                    .HasColumnType("nvarchar(50)");
+                b.Property<DateTime>("Created")
+                    .HasColumnType("datetime");
 
                 b.HasKey("Id");
 

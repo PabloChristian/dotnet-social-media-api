@@ -15,13 +15,15 @@ namespace Posterr.Application.Post.Commands.CreatePost
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public CreatePostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper)
+        public CreatePostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper, IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _postRepository = postRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<CreatePostViewModel> Handle(CreatePostCommand request, CancellationToken cancellationToken)
@@ -30,11 +32,15 @@ namespace Posterr.Application.Post.Commands.CreatePost
             
             var currentDateValue = DateTime.Today;
 
+            var userId = await _userRepository.GetUserData(request.UserName, cancellationToken);
+            UserHelper.ValidateUser(userId?.Id);
+
             var entity = new Domain.Entity.Post
             {
                 UserName = request.UserName,
                 RepostId = request.Id,
-                PostMessage = request.PostMessage
+                PostMessage = request.PostMessage,
+                UserId = userId?.Id
             };
 
             var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));

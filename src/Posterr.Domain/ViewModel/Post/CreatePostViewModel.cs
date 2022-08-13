@@ -8,6 +8,6 @@ namespace Posterr.Domain.ViewModel.Post
     {
         public Guid Id { get; set; }
         public string Message { get; set; } = string.Empty;
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

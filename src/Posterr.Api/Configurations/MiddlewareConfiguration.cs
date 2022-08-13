@@ -7,8 +7,9 @@ namespace Posterr.Api.Configurations
         public static void AddMiddlewares(this IApplicationBuilder app)
         {
             app.UseMiddleware<RequestHandlerMiddleware>();
-            app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMiddleware<ResponseHandlerMiddleware>();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+            
         }
     }
 }
