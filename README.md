@@ -1,6 +1,7 @@
 <h1 align="center">
 ⭐ Social Media API ⭐ 
 </h1>
+Name: Pablo Christian Pereira Nazareth
 💬 A Social Media API application using C# dotnet. This is a coding challenge.
 
 ## 👨‍💻 Code Challenge
