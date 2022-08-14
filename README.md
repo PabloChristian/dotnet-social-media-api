@@ -101,9 +101,6 @@ If you want to run the project outside containers, you must also have the follow
 ## ⚙️ Executing the Project
 To execute the project, follow the steps below:
 
-#### Important Notes
-1. When using date start or date end filter, the pattern must be yyyy-MM-dd
-
 #### Execution
 
 **Option 01: Run in Containers**
@@ -118,6 +115,10 @@ to stop the execution of the containers, type "docker-compose down"
 1. Run SQLServer(port 1435).
 2. Open the command prompt (cmd), navigate inside the project "\src" folder, and type: "run.bat"
 3. This script will run the projects and open the browsers.
+
+#### Testing
+1. There is already a seed of usernames created and to be used on posts: test1, test2, test3, test4
+2. When using date start or date end filter, the pattern must be yyyy-MM-dd
 
 
 ## 🤝 Critique

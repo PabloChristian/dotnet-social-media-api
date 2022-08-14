@@ -10,7 +10,7 @@ namespace Posterr.Domain.Helper
         {
             if (totalPosts >= POSTS_PER_DAY)
                 throw new LimitPostsExceededException(
-                    $"You have exceeded the maximum value of posts \"{POSTS_PER_DAY}\" in one day."
+                    $"You have exceeded the maximum value of posts ({POSTS_PER_DAY}) in one day."
                 );
         }
 

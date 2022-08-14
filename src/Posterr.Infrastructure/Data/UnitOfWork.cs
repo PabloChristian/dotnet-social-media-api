@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Posterr.Domain.Interface;
+﻿using Posterr.Domain.Interface;
 using Posterr.Infrastructure.Data.Context;
-using Posterr.Shared.Kernel.Entity;
 
 namespace Posterr.Infrastructure.Data
 {
@@ -12,7 +9,11 @@ namespace Posterr.Infrastructure.Data
 
         public UnitOfWork(PosterrContext posterrContext) => _posterrContext = posterrContext;
 
+        public bool Commit() => _posterrContext.SaveChanges() > 0;
+
         public async Task<bool> CommitAsync(CancellationToken cancellationToken)
             => await _posterrContext.SaveChangesAsync(cancellationToken) > 0;
+
+
     }
 }
