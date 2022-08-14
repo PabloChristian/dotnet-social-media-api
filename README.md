@@ -102,6 +102,9 @@ If you want to run the project outside containers, you must also have the follow
 To execute the project, follow the steps below:
 
 #### Important Notes
+1. When using date start or date end filter, the pattern must be yyyy-MM-dd
+
+#### Execution
 
 **Option 01: Run in Containers**
 1. Run Docker Desktop.
@@ -125,10 +128,14 @@ This section is used to self-critique to reflect and write what would be good to
 2. Scalability:
 	1. Decouple the message system using RabbitMQ to create all the new posts, reposts and quotes.
 	2. Use of AWS ECS (Elastic Container Service) or EKS (Elastic Kubernetes Service) to manage the Docker Containers.
+	3. Use of AWS Auto Scaling to manage scalability of instances by CPU usage. (Above 70% CPU usage would create new instance).
 3. Load Balancing:
-    1. Use of AWS Load Balancer to balance the requests between the containers.
+    1. Use of AWS Load Balancer to balance the requests between the containers (active instances).
 4. Security:
 	1. Use of .NET Identity to manage user authentication for security.
+	2. Implement token JWT and use of claims to manager user permissions.
 5. Tests
 	1. Implement remaining tests left for the other classes.
-	2. Implement integration tests to test end-to-end requests
+	2. Implement integration tests to test end-to-end requests.
+	3. Implement K6 to execute load tests so we can monitor our application to see if its going to be able to handle the expected number of users and requests per second.
+	

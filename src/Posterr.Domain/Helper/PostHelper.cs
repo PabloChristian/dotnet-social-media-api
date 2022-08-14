@@ -1,20 +1,24 @@
 ﻿using Posterr.Domain.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Posterr.Domain.Entity;
 
 namespace Posterr.Domain.Helper
 {
     public static class PostHelper
     {
-        private const int POSTS_PER_DAY = 5;
+        public const int POSTS_PER_DAY = 5;
         public static void ValidatePostCount(long totalPosts)
         {
             if (totalPosts >= POSTS_PER_DAY)
                 throw new LimitPostsExceededException(
-                    $"It is not allowed to post more than \"{POSTS_PER_DAY}\" posts in one day. Total posted: ${totalPosts}"
+                    $"You have exceeded the maximum value of posts \"{POSTS_PER_DAY}\" in one day."
+                );
+        }
+
+        public static void ValidatePost(Post? post)
+        {
+            if (post == null || post?.Id == null)
+                throw new InvalidPostIdException(
+                    $"The Post Id does not exist or is invalid"
                 );
         }
     }

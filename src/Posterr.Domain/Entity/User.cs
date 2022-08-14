@@ -8,8 +8,8 @@ namespace Posterr.Domain.Entity
         [MaxLength(14)]
         public string UserName { get; set; }
         public string UserScreenName { get; set; }
-        public string ProfileImageUrl { get; set; }
-        public string Created { get; set; }
+        public string? ProfileImageUrl { get; set; }
+        public DateTime Created { get; set; }
         public ICollection<Post> PostMessage { get; private set; }
 
         public User() => PostMessage = new HashSet<Post>();

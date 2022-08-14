@@ -36,19 +36,14 @@ namespace Posterr.Infrastructure.Data.Context
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            //var localZone = TimeZoneInfo.Local;
-
             foreach (var entry in ChangeTracker.Entries<EntityAudit>())
             {
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.Created = DateTime.UtcNow;
-                        //entry.Entity.TimeZone = localZone.DisplayName;
+                        entry.Entity.Created = DateTime.Now;
                         break;
                     case EntityState.Modified:
-                        //entry.Entity.LastModified = DateTime.UtcNow;
-                        //entry.Entity.TimeZone = localZone.DisplayName;
                         break;
                 }
             }

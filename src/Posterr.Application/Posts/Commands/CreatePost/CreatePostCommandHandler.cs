@@ -43,15 +43,16 @@ namespace Posterr.Application.Post.Commands.CreatePost
                 UserId = userId?.Id
             };
 
-            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
+            var totalPosts = _postRepository.GetPosts(
+                currentDateValue, currentDateValue.AddDays(1), entity.UserName,0,PostHelper.POSTS_PER_DAY
+            ).Count();
 
             PostHelper.ValidatePostCount(totalPosts);
 
             await _postRepository.AddAsync(entity, cancellationToken);
 
-            bool userCreated = await _unitOfWork.CommitAsync(cancellationToken);
-
-            if(!userCreated) throw new UserNotCreatedException();
+            bool dataCreated = await _unitOfWork.CommitAsync(cancellationToken);
+            if(!dataCreated) throw new UserNotCreatedException();
 
             return _mapper.Map<CreatePostViewModel>(entity);
         }

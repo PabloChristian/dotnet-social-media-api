@@ -20,16 +20,18 @@ namespace Posterr.Api.Controllers
             INotificationHandler<DomainNotification> notifications,
             IMediatorHandler mediator,
             ILogger<PostController> _)
-            : base(notifications, mediator) {}
+            : base(notifications, mediator) { }
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPosts(
+            [FromQuery] DateTime? dateStart,
+            [FromQuery] DateTime? dateEnd,
             [FromQuery] int skip = 0,
             [FromQuery] int take = DEFAULT_POSTS_TAKE_VALUE)
         {
-            var query = new GetPostListQuery { Skip = skip, Take = take };
+            var query = new GetPostListQuery { DateStart = dateStart, DateEnd = dateEnd, Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(query, new CancellationToken()));
         }
 
@@ -37,19 +39,15 @@ namespace Posterr.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetPostsByUserId(
+            [FromQuery] DateTime? dateStart,
+            [FromQuery] DateTime? dateEnd,
             [FromRoute] string userId,
             [FromQuery] int skip = 0,
             [FromQuery] int take = DEFAULT_POSTS_TAKE_VALUE)
         {
-            var command = new GetPostByUserQuery { UserName = userId, Skip = skip, Take = take };
+            var command = new GetPostByUserQuery { DateStart = dateStart, DateEnd = dateEnd, UserName = userId, Skip = skip, Take = take };
             return Ok(await _mediator.SendCommandResult(command, new CancellationToken()));
         }
-
-        /*[HttpGet("DateRange")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<PostListViewModel>> GetByDateRange([FromQuery] GetPostByDataRangeQuery command)
-            => Ok(await _mediator.SendCommandResult(command));
-        */
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]

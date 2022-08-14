@@ -11,7 +11,7 @@ namespace Posterr.Domain.Entity
         public string UserName { get; set; }
         public User User { get; set; }
         public Guid? RepostId { get; set; }
-        public virtual Post Repost { get; set; }
-        public ICollection<Post> Reposts { get; private set; }
+        public virtual Post? Repost { get; set; }
+        public ICollection<Post?> Reposts { get; private set; }
     }
 }

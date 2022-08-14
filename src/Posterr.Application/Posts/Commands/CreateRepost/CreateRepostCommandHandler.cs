@@ -14,28 +14,36 @@ namespace Posterr.Application.Posteets.Commands.CreateReposteet
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public CreateRepostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper)
+        public CreateRepostCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper, IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _postRepository = postRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<CreatePostViewModel> Handle(CreateRepostCommand request, CancellationToken cancellationToken)
         {
             var currentDateValue = DateTime.Today;
 
+            var userId = await _userRepository.GetUserData(request.UserName, cancellationToken);
+            UserHelper.ValidateUser(userId?.Id);
+
+            var totalPosts = _postRepository.GetPosts(currentDateValue, currentDateValue.AddDays(1), request.UserName).Count();
+            PostHelper.ValidatePostCount(totalPosts);
+
+            var post = _postRepository.GetPostById(request.RepostId).FirstOrDefault();
+            PostHelper.ValidatePost(post);
+
             var entity = new Domain.Entity.Post
             {
                 UserName = request.UserName,
-                RepostId = request.Id,
-                PostMessage = request.PostMessage
+                UserId = userId.Id,
+                RepostId = request.RepostId,
+                PostMessage = post.PostMessage
             };
-
-            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
-
-            PostHelper.ValidatePostCount(totalPosts);
 
             await _postRepository.AddAsync(entity, cancellationToken);
 

@@ -2,7 +2,8 @@
 
 namespace Posterr.Application.Posts.Commands.CreateRepost
 {
-    public class CreateRepostCommand : PostCommand<CreatePostViewModel>
+    public class CreateRepostCommand : RepostCommand<CreatePostViewModel>
     {
+        public Guid RepostId { get; set; }
     }
 }

@@ -9,41 +9,26 @@ namespace Posterr.Infrastructure.Data.Repositories
     {
         public PostRepository(PosterrContext context) : base(context) {}
 
-        public long GetTotalPostsByDateAndUser(string userName, DateTime dateStart, DateTime dateEnd)
+        public IQueryable<Post> GetPosts(DateTime? dateStart = null, DateTime? dateEnd = null, string user = "", int skip = 0, int take = 10)
         {
-            return _context.Posts
-                .Where(p => p.UserName == userName && p.Created >= dateStart && p.Created < dateEnd)
-                .AsNoTracking().AsEnumerable().Count();
-        }
+            var queryAble = _context.Posts.Include(p => p.Repost).AsQueryable().AsNoTracking();
 
-        public IQueryable<Post> GetPostsByDate(DateTime? dateStart, DateTime? dateEnd)
-        {
-            return _context.Posts
-                .Where(p => (dateStart == null || p.Created >= dateStart) && (dateEnd == null || p.Created < dateEnd))
-                .Include(p => p.Repost)
-                .AsNoTracking()
-                .OrderByDescending(e => e.Created);
-        }
+            if (dateStart != null) queryAble = queryAble.Where(x => x.Created >= dateStart);
+            if (dateEnd != null) queryAble = queryAble.Where(x => x.Created <= dateEnd);
+            if(!string.IsNullOrEmpty(user)) queryAble = queryAble.Where(x => x.UserName.Equals(user));
 
-        public IQueryable<Post> GetPosts(int skip = 0, int take = 10)
-        {
-            return _context.Posts
-                .Include(p => p.Repost)
-                .AsNoTracking()
+            return queryAble
                 .OrderByDescending(e => e.Created)
                 .Skip(skip)
                 .Take(take);
         }
 
-        public IQueryable<Post> GetPostsByUser(string user, int skip = 0, int take = 10)
+        public IQueryable<Post> GetPostById(Guid postId)
         {
-            return _context.Posts
-                .Where(p => p.UserName.Equals(user))
-                .Include(p => p.Repost)
-                .AsNoTracking()
-                .OrderByDescending(e => e.Created)
-                .Skip(skip)
-                .Take(take);
+            var queryAble = _context.Posts.AsQueryable().AsNoTracking();
+
+            return queryAble
+                .Where(x => x.Id.Equals(postId));
         }
     }
 }

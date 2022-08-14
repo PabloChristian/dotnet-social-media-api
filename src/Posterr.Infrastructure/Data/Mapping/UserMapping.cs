@@ -24,7 +24,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test1",
                 UserScreenName = "test1",
                 ProfileImageUrl = "",
-                Created = "2022-08-09 00:00:00"
+                Created = DateTime.Now
             });
 
             builder.HasData(new User()
@@ -33,7 +33,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test2",
                 UserScreenName = "test2",
                 ProfileImageUrl = "",
-                Created = "2022-08-08 00:00:00"
+                Created = DateTime.Now
             });
 
             builder.HasData(new User()
@@ -42,7 +42,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test3",
                 UserScreenName = "test3",
                 ProfileImageUrl = "",
-                Created = "2022-08-07 00:00:00"
+                Created = DateTime.Now
             });
 
             builder.HasData(new User()
@@ -51,7 +51,7 @@ namespace Posterr.Infrastructure.Data.Mapping
                 UserName = "test4",
                 UserScreenName = "test4",
                 ProfileImageUrl = "",
-                Created = "2022-08-06 00:00:00"
+                Created = DateTime.Now
             });
         }
     }

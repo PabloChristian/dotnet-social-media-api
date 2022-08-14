@@ -21,7 +21,7 @@ namespace Posterr.Application.Post.Queries.GetPostByUser
 
         public async Task<PostListViewModel> Handle(GetPostByUserQuery request, CancellationToken cancellationToken)
         {
-            var posts = await _postRepository.GetPostsByUser(request.UserName,request.Skip, request.Take)
+            var posts = await _postRepository.GetPosts(request.DateStart, request.DateEnd, request.UserName,request.Skip,request.Take)
                 .ProjectTo<PostViewModel>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 

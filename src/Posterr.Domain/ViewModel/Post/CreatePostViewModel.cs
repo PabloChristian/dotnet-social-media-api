@@ -7,7 +7,7 @@ namespace Posterr.Domain.ViewModel.Post
     public class CreatePostViewModel
     {
         public Guid Id { get; set; }
-        public string Message { get; set; } = string.Empty;
-        public string Date { get; set; }
+        public string PostMessage { get; set; } = string.Empty;
+        public string Created { get; set; }
     }
 }

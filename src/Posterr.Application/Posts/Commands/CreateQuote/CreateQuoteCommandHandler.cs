@@ -13,32 +13,39 @@ namespace Posterr.Application.Posts.Commands.CreateQuote
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPostRepository _postRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public CreateQuoteCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper)
+        public CreateQuoteCommandHandler(IUnitOfWork unitOfWork, IPostRepository postRepository, IMapper mapper, IUserRepository userRepository)
         {
             _unitOfWork = unitOfWork;
             _postRepository = postRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<CreatePostViewModel> Handle(CreateQuoteCommand request, CancellationToken cancellationToken)
         {
             var currentDateValue = DateTime.Today;
 
+            var userId = await _userRepository.GetUserData(request.UserName, cancellationToken);
+            UserHelper.ValidateUser(userId?.Id);
+
+            var totalPosts = _postRepository.GetPosts(currentDateValue, currentDateValue.AddDays(1), request.UserName).Count();
+            PostHelper.ValidatePostCount(totalPosts);
+
+            var post = _postRepository.GetPostById(request.QuoteId).FirstOrDefault();
+            PostHelper.ValidatePost(post);
+
             var entity = new Domain.Entity.Post
             {
                 UserName = request.UserName,
+                UserId = userId.Id,
                 RepostId = request.Id,
                 PostMessage = request.Quote,
             };
 
-            var totalPosts = _postRepository.GetTotalPostsByDateAndUser(entity.UserName, currentDateValue, currentDateValue.AddDays(1));
-
-            PostHelper.ValidatePostCount(totalPosts);
-
             _postRepository.Add(entity);
-
             await _unitOfWork.CommitAsync(cancellationToken);
 
             return _mapper.Map<CreatePostViewModel>(entity);

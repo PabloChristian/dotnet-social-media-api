@@ -5,9 +5,10 @@ using Posterr.Domain.ViewModel.Post;
 
 namespace Posterr.Application.Post.Commands.CreateQuote
 {
-    public class CreateQuoteCommand : PostCommand<CreatePostViewModel>
+    public class CreateQuoteCommand : RepostCommand<CreatePostViewModel>
     {
         public string Quote { get; set; }
+        public Guid QuoteId { get; set; }
 
         public override bool IsValid()
         {

@@ -8,6 +8,8 @@ using Posterr.Infrastructure.InversionOfControl;
 using System.Reflection;
 using Posterr.Application;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Posterr.Api
 {
@@ -19,7 +21,17 @@ namespace Posterr.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                var dateConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter
+                {
+                    DateTimeFormat = "yyy'-'MM'-'dd'"
+                };
+
+                options.SerializerSettings.Converters.Add(dateConverter);
+                options.SerializerSettings.Culture = new CultureInfo("en-IE");
+                options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
+            });
 
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy", builder => builder.SetIsOriginAllowed(_ => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials().Build());
@@ -31,6 +43,7 @@ namespace Posterr.Api
                 )
             );
             AutoMapperConfig.RegisterMappings();
+
             services.AddSwagger();
             services.AddSingleton(AutoMapperConfig.RegisterMappings().CreateMapper());
             services.AddMvc();
